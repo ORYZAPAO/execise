@@ -1,19 +1,24 @@
-#ifndef __FIBONACCI_HPP
-#define __FIBONACCI_HPP
+#ifndef __IFTHENELSE_HPP
+#define __IFTHENELSE_HPP
 
-namespace oryzalib{
+namespace oyzalib{
 
-///
-template <int num>
-int Fibonacci(){
-  return Fibonacci<num-1>() + Fibonacci<num-2>();
+template<bool bl, class Tr, class Fl>
+class IfThenElse;
+
+template<class Tr, class Fl>
+class IfThenElse<true,Tr,Fl>{
+public:
+	typedef Tr result;
 };
 
-template <>
-int Fibonacci<1>(){ return 1; }
-template <>
-int Fibonacci<2>(){ return 2; }
+template<class Tr, class Fl>
+class IfThenElse<false,Tr,Fl>{
+public:
+	typedef Fl result;
+};
 
 };
 
-#endif /// __FIBONACCI_HPP
+
+#endif // #define __IFTHENELSE_HPP
