@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 
+// 関数オブジェクト
 struct Functor{
   int operator()(){
     return 100;
