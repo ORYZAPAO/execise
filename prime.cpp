@@ -1,5 +1,7 @@
 #include <iostream>
 //include <boost/format.hpp>
+#include<stdio.h>
+
 using namespace std;
 
 // Prime 素数を判定
