@@ -2,7 +2,7 @@
 #define __MAKE_UNIQUE__H__
 
 //
-// make_uniqe(c++14) 
+// make_uniqe(c++14, #include <memory>) 
 //
 // How to Use
 //
