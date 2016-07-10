@@ -1,3 +1,8 @@
+// 素数計算 (NVIDIA CUDA)
+//
+// nvcc -std=c++11 prime2_cuda.cu// 
+// 
+
 #include <iostream>
 //include <boost/format.hpp>
 #include<stdio.h>
@@ -6,11 +11,6 @@
 
 ///#include "make_unique.hpp" /// for c++11
 using namespace std;
-
-
-//const int MAX_INT = 1000000;
-const int MAX_INT = 100;
-
 
 //const int MAX_INT = 1000000;
 const unsigned int MAX_INT = 1024;
