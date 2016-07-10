@@ -4,7 +4,6 @@
 // 
 
 #include <iostream>
-//include <boost/format.hpp>
 #include<stdio.h>
 #include<array>
 #include<memory>
@@ -15,7 +14,8 @@ using namespace std;
 //const int MAX_INT = 1000000;
 const unsigned int MAX_INT = 1024;
 
-// Prime 素数を判定
+//
+// Prime 素数を判定(Devcice)
 //
 __device__ bool isPrime(unsigned int val) {
   unsigned int  half_val = (val >> 1); /// val / 2 
@@ -33,11 +33,12 @@ __device__ bool isPrime(unsigned int val) {
 
 
 //
+// カーネル関数(Devcice)
 //
 __global__ void Kernel_Prime(
-  const unsigned int *in,
-  unsigned int *rst ) {
-  //// Coding Now///
+ const unsigned int *in,
+       unsigned int *rst ) {
+
   unsigned int offset = *(in + threadIdx.x) ;
 
   // 判定
@@ -51,45 +52,40 @@ __global__ void Kernel_Prime(
 
 
 
-
 //
 //
 int main(){
-  ///unique_ptr<unsigned int[]>  inputVal(new unsigned int[MAX_INT]);  /// 入力データ
   unsigned int  *inVal_h;
   unsigned int  *inVal_d;
   unsigned int  *rstVal_d;    /// 素数判定結果
   unsigned int  *rstVal_h;    /// 素数判定結果6
   
   cudaError_t cudaStatus;
-  /// 入力値バッファ(Device)
+
+  /// GPU上に入力値のバッファを確保(Device)
   cudaMalloc((void**)&inVal_d, MAX_INT * sizeof(unsigned int));
   
-  /// 判定結果の保存バッファ(Device)
+  ///        判定結果の保存バッファを確保(Device)
   cudaMalloc((void**)&rstVal_d, MAX_INT * sizeof(unsigned int));
-
 
   /// 入力値を用意(Host)
   inVal_h = new unsigned int[MAX_INT];
   for (unsigned int i = 0; i<MAX_INT; i++) {
     inVal_h[i] = i;
   }
+  /// 入力値を、GPU上に転送(Host -> Device) 
   cudaMemcpy(inVal_d, inVal_h,
              MAX_INT * sizeof(unsigned int),
              cudaMemcpyHostToDevice); /* メモリ転送(Host→Device) */
 
-
-
-  ////////////////////////////////////////
+  ///
+  /// CUDA カーネル実行
+  ///
   printf("start\n");
   Kernel_Prime<<<1,MAX_INT>>>(inVal_d, rstVal_d);
-    
-                              // 素数判定
-    
-  //for (int j = 1; j<MAX_INT; j++) {
-  ///result[j]  = isPrime(j);
-  //}
-  
+
+  //
+  // 終了持ち
   // Check for any errors launching the kernel
   cudaStatus = cudaGetLastError();
   if (cudaStatus != cudaSuccess) {
@@ -97,28 +93,23 @@ int main(){
     ///goto Error;
   }
   
-  ////////////////////////////////////////
-
-  /// 結果を取得 
+  
+  /// 結果を取得(Device -> Host) 
   rstVal_h = new unsigned int[MAX_INT];
-  cudaMemcpy(rstVal_h, /*inVal_d*/rstVal_d,
+  cudaMemcpy(rstVal_h, rstVal_d,
              MAX_INT * sizeof(unsigned int),
              cudaMemcpyDeviceToHost);  /* メモリ転送(Device→Host) */
 
-
-  // 結果を表示
+  /// 結果を表示
   for (int j = 1; j<MAX_INT; j++) {
     if (rstVal_h[j] != 0) printf("%d ", j);
-    ///printf("%d ", rstVal_h[j]);
   }
   
-
-  // MemoryFree
+  /// MemoryFree
   delete[] inVal_h;
   delete[] rstVal_h;
   cudaFree(inVal_d);
   cudaFree(rstVal_d);
-
 
   return 0;
 }
