@@ -14,7 +14,7 @@ const int MAX_INT = 100;
 
 // Prime 素数を判定
 //
-bool isPrime(int val){
+__device__ bool isPrime(int val){
   int  half_val = (val >> 1); /// val / 2 
   bool ret_code = false;
 
@@ -29,33 +29,72 @@ bool isPrime(int val){
 }
 
 
+__global__ void Calc(){
+  /// Coding Now///
+}
+
+
+
+
 //
 //
 int main(){
-  array<bool,MAX_INT> result;   // 素数判定結果を格納  
 
-  ///
-  char *pResult;
-  cudaMalloc((void**)&pResult, MAX_INT * sizeof(unsigned int));
-  unique_ptr<unsigned int>  initVal(new unsigned int[MAX_INT]); 
+  ///unique_ptr<unsigned int[]>  inputVal(new unsigned int[MAX_INT]);  /// 入力データ
+  unsigned int  *inVal_h;
+  unsigned int  *inVal_d;
+  unsigned int  *rstVal_d;    /// 素数判定結果
+  unsigned int  *rstVal_h;    /// 素数判定結果
 
-  for(int i=0; i<MAX_INT; i++){
-    initVal= i;
+  /// 入力値バッファ(Device)
+  cudaMalloc((void**)&inVal_d, MAX_INT * sizeof(unsigned int) );
+
+  /// 判定結果の保存バッファ(Device)
+  cudaMalloc((void**)&rstVal_d, MAX_INT * sizeof(unsigned int) );
+
+
+  /// 入力値を用意(Host)
+  inVal_h = new unsigned int[MAX_INT];
+  for(unsigned int i=0; i<MAX_INT; i++){
+    inVal_h[i] = i;
   }
+  cudaMemcpy(inVal_d, inVal_h,
+	     MAX_INT * sizeof(unsigned int),
+	     cudaMemcpyHostToDevice); /* メモリ転送(Host→Device) */
+  
 
+
+  ////////////////////////////////////////
   
   // 素数判定
   printf("start\n");
   for(int j=1; j<MAX_INT; j++) {    
-    result[j]  = isPrime(j);
+    ///result[j]  = isPrime(j);
   }
  
+
+  ////////////////////////////////////////
+  
+  /// 結果を取得 
+  rstVal_h = new unsigned int[MAX_INT];
+  cudaMemcpy(rstVal_h, /*inVal_d*/rstVal_d,
+	     MAX_INT * sizeof(unsigned int),
+	     cudaMemcpyDeviceToHost);  /* メモリ転送(Device→Host) */
+    
+
   // 結果を表示
   for(int j=1; j<MAX_INT; j++) {    
-    if( result[j] ) printf("%d ",j);
+    if( rstVal_h[j] != 0 ) printf("%d ",j);
+    ///printf("%d ", rstVal_h[j]);
   }
 
+
+
+  
   // MemoryFree
-  cudaFree(pResult);
+  delete [] inVal_h;
+  delete [] rstVal_h;
+  cudaFree(inVal_d);
+  cudaFree(rstVal_d);
 
 }
