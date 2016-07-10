@@ -1,8 +1,8 @@
+//
 // 素数計算 (NVIDIA CUDA)
 //
-// nvcc -std=c++11 prime2_cuda.cu// 
+// nvcc -std=c++11 prime2_cuda.cu 
 // 
-
 #include <iostream>
 #include<stdio.h>
 #include<array>
@@ -19,14 +19,14 @@ const unsigned int MAX_INT = 1024;
 //
 __device__ bool isPrime(unsigned int val) {
   unsigned int  half_val = (val >> 1); /// val / 2 
-  bool         ret_code = false;
+  bool          ret_code = false;
 
   unsigned int i;
   for (i = half_val; i>1; i--) {
     if ((val % i) == 0) break;
   }
   if (i == 1) ret_code = true;
-  else       ret_code = false;
+  else        ret_code = false;
 
   return ret_code;
 }
