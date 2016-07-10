@@ -1,11 +1,15 @@
 #ifndef __MAKE_UNIQUE__H__
 #define __MAKE_UNIQUE__H__
 
-/// How to Use
+//
+// make_uniqe(c++14) 
+//
+// How to Use
 //
 //  std::unique_ptr<AAAClass> p = make_unique<AAAClass>();
 //  or
 //  auto p = make_unique<AAAClass>();
+//
 
 template<class T>
 std::unique_ptr<T> make_unique()
