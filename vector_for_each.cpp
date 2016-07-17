@@ -2,6 +2,9 @@
 #include <vector>
 #include <boost/format.hpp>
 
+/// #include <algorithm> が無くてもコンパイルできるみたい？(Mac OS の clang)
+#include <algorithm>
+
 using namespace std;
 
 int main(){
