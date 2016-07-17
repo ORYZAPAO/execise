@@ -4,7 +4,7 @@ usidng namespace std;
 
 int main(){
 
-  /// http://cpprefjp.github.io/lang/cpp11/lambda_expressions.html
+  /// http://cpprefjp.github.io/lang/cpp11/lambda_expressions.html から引用
   /// 
   /// 構文
   /// 
