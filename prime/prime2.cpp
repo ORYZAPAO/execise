@@ -10,7 +10,8 @@ using namespace std;
 
 
 //const int MAX_INT = 1000000;
-const int MAX_INT = 1024;
+////const int MAX_INT = 1024;
+const int MAX_INT = 200000;
 
 // Prime 素数を判定
 //

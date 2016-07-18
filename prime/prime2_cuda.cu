@@ -12,7 +12,9 @@
 using namespace std;
 
 //const int MAX_INT = 1000000;
-const unsigned int MAX_INT = 1024;
+///const unsigned int MAX_INT = 1024;
+const unsigned int MAX_INT       = 200000;
+const unsigned int NUM_OF_THREAD = 1024;
 
 //
 // Prime 素数を判定(Devcice)
@@ -37,9 +39,10 @@ __device__ bool isPrime(unsigned int val) {
 //
 __global__ void Kernel_Prime(
  const unsigned int *in,
-       unsigned int *rst ) {
+       unsigned int *rst,
+       unsigned int  base   ) {
 
-  unsigned int offset = *(in + threadIdx.x) ;
+  unsigned int offset = *(in + base + threadIdx.x) ;
 
   // 判定
   if( isPrime(*(in+offset)) ){ 
@@ -82,15 +85,20 @@ int main(){
   /// CUDA カーネル実行
   ///
   printf("start\n");
-  Kernel_Prime<<<1,MAX_INT>>>(inVal_d, rstVal_d);
+  for(unsigned int base=0; base < MAX_INT; base+=NUM_OF_THREAD ){   
+    cout << ".." << base << endl;
 
-  //
-  // 終了持ち
-  // Check for any errors launching the kernel
-  cudaStatus = cudaGetLastError();
-  if (cudaStatus != cudaSuccess) {
-    fprintf(stderr, "addKernel launch failed: %s\n", cudaGetErrorString(cudaStatus));
-    ///goto Error;
+    Kernel_Prime<<<1,NUM_OF_THREAD>>>(inVal_d, rstVal_d, base);
+
+    //
+    // 終了持ち
+    // Check for any errors launching the kernel
+    cudaStatus = cudaGetLastError();
+    if (cudaStatus != cudaSuccess) {
+      fprintf(stderr, "addKernel launch failed: %s\n", cudaGetErrorString(cudaStatus));
+      ///goto Error;
+    }
+
   }
   
   
@@ -104,6 +112,8 @@ int main(){
   for (int j = 1; j<MAX_INT; j++) {
     if (rstVal_h[j] != 0) printf("%d ", j);
   }
+
+
   
   /// MemoryFree
   delete[] inVal_h;
