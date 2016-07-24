@@ -11,8 +11,17 @@ int main(){
   vector<int> dat2 ={9,8,7,5,5,4,3,2,1,0}; ///  6!= 5
   //                       ^^^
 
+
+  cout << "dat0 = {";
   for_each(dat0.begin(), dat0.end(), [](int x){ cout << x << " ";} );
-  cout << endl;
+  cout << "}" << endl;
+  cout << "dat1 = {";
+  for_each(dat1.begin(), dat1.end(), [](int x){ cout << x << " ";} );
+  cout << "}" << endl;
+  cout << "dat2 = {";
+  for_each(dat2.begin(), dat2.end(), [](int x){ cout << x << " ";} );
+  cout << "}" << endl << endl;;
+
 
   /// ２つのコンテナの中身が，同一の有無を判定
   bool result;
