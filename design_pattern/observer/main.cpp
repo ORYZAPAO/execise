@@ -20,10 +20,12 @@ private:
   vector<Observer_Base*> m_ob_list; /// 通知先の各オブザーバーへのポインタ配列
 
 public:
+  // 通知先のオブザーバーを登録
   virtual void RegistObserver(Observer_Base *pOb){
     m_ob_list.push_back(pOb); 
   };
 
+  // 登録したオブザーバーを削除
   virtual void RemoveObserver(Observer_Base *pOb){
     auto result = std::find(m_ob_list.begin(), m_ob_list.end() , pOb);
     if( result != m_ob_list.end() ){
@@ -31,11 +33,17 @@ public:
     }
   };
 
+  // 各オブザーバーへ通知
   virtual void NotifyObserbers(){
     std::for_each(m_ob_list.begin(), m_ob_list.end(),
                   [](Observer_Base *i){ i->Update(); });
   };
 
+  /// 通知用の値を生成
+  void UpdateData(){
+    vector<int> val = {0,1,2,3,4,5,6,7,8,9 }; 
+  }    
+  
 };
 
 
