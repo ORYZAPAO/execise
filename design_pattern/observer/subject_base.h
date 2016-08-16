@@ -9,7 +9,7 @@ class Subject_Base{
 
   virtual void RegistObserver(Observer_Base *pOb) = 0;
   virtual void RemoveObserver(Observer_Base *pOb)=0;
-  virtual void NotifyObserbers()=0;
+  virtual void NotifyObserbers(void)=0;
 };
 
 };

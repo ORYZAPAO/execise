@@ -6,7 +6,7 @@ namespace myspace{
 
 class Observer_Base {
  public:
-  virtual void Update() = 0;
+  virtual void Update(void) = 0;
 };
 
 }; 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include<string>
 
 #include <boost/format.hpp>
 
@@ -18,8 +19,14 @@ using namespace myspace;
 class RealSubject : public Subject_Base{
 private:
   vector<Observer_Base*> m_ob_list; /// 通知先の各オブザーバーへのポインタ配列
-
+  int                    m_base;
 public:
+  vector<int>            m_dat_list;
+  
+public:
+
+  RealSubject(int d=0):m_base(d){ }
+
   // 通知先のオブザーバーを登録
   virtual void RegistObserver(Observer_Base *pOb){
     m_ob_list.push_back(pOb); 
@@ -34,14 +41,16 @@ public:
   };
 
   // 各オブザーバーへ通知
-  virtual void NotifyObserbers(){
+  virtual void NotifyObserbers(void){
     std::for_each(m_ob_list.begin(), m_ob_list.end(),
                   [](Observer_Base *i){ i->Update(); });
   };
 
   /// 通知用の値を生成
   void UpdateData(){
-    vector<int> val = {0,1,2,3,4,5,6,7,8,9 }; 
+    for(int i=0; i<10; i++){ m_dat_list.push_back(i+m_base); };
+
+    NotifyObserbers();
   }    
   
 };
@@ -51,13 +60,43 @@ public:
 // オブザーバーを実装
 //
 class RealObserver : public Observer_Base {
+private:
+  RealSubject *m_pSubject;
+  std::string  m_name;
+  
 public:
-  virtual void Update(){}    
+  RealObserver(string str):m_name(str){}
+  
+  virtual void Update(void){
+    cout << boost::format("Detect(%s)") % m_name << endl;      
+
+    auto datlist = m_pSubject->m_dat_list;
+    for_each(datlist.begin(), datlist.end(),
+             [=](int i){ cout << boost::format("%d ") % i;  });
+    cout << "\n\n";
+  }    
+  
+  void SetSubject(RealSubject *pSub){
+    m_pSubject = pSub;
+  }
+  
 };
 
 
-
+//------------------------------------------------------------
 int main(){
 
-  cout << boost::format("Hello") << endl;
+  RealSubject sub(0);
+
+  RealObserver obs("Observer-1");
+  RealObserver obs2("Observer-2");
+
+  obs.SetSubject(&sub);
+  obs2.SetSubject(&sub);
+  
+  sub.RegistObserver(&obs);
+  sub.RegistObserver(&obs2);
+  
+  sub.UpdateData();
+
 }
