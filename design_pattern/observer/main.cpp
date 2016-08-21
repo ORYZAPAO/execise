@@ -43,6 +43,7 @@ public:
   // 各オブザーバーへ通知
   virtual void NotifyObserbers(void){
     std::for_each(m_ob_list.begin(), m_ob_list.end(),
+　　　　　　　　　　// オブザーバーの Update()メソッドを呼出す
                   [](Observer_Base *i){ i->Update(); });
   };
 
