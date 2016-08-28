@@ -2,7 +2,8 @@
 #include<boost/format.hpp>
 #include<string>
 
-#include"coffee_component.h"
+#include"component.h"
+#include"decorator.h"
 
 using namespace std;
 
