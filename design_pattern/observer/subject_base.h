@@ -1,3 +1,5 @@
+#ifndef __SUBJECT_BASE_H__
+#define __SUBJECT_BASE_H__
 /*
  * Subject Interface
  */
@@ -13,3 +15,4 @@ class Subject_Base{
 };
 
 };
+#endif // __SUBJECT_BASE_H__

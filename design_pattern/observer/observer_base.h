@@ -1,3 +1,5 @@
+#ifndef __OBSERVER_BASE_H__
+#define __OBSERVER_BASE_H__
 /*
  * Observer Interface
  */
@@ -10,3 +12,5 @@ class Observer_Base {
 };
 
 }; 
+
+#endif //__OBSERVER_BASE_H__
