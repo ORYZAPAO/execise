@@ -1,3 +1,5 @@
+#ifndef __CONCRETECLASS_H__
+#define __CONCRETECLASS_H__
 class ConcreteClass : public AbstractClass{ 
  public:
   virtual void open(){
@@ -13,3 +15,5 @@ class ConcreteClass : public AbstractClass{
   }
   
 };
+
+#endif // __CONCRETECLASS_H__

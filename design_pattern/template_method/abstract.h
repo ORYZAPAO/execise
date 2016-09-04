@@ -1,3 +1,6 @@
+#ifndef __ABSTRACT_H__
+#define __ABSTRACT_H__
+
 class AbstractClass{
  public:
   virtual void open()=0;
@@ -14,3 +17,5 @@ class AbstractClass{
 
   virtual ~AbstractClass(){}
 };
+
+#endif // __ABSTRACT_H__
