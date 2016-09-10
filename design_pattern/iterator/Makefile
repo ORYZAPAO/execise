@@ -6,7 +6,7 @@ SRC = main.cpp
 
 CC     = clang++
 ##CC     = g++
-CCOPT  = -std=c++11 
+CCOPT  = -std=c++14 
 TARGET = a.exe
 
 $(TARGET) : $(SRC)
