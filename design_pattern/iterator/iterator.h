@@ -7,6 +7,8 @@ class Iterator{
  public :
   virtual bool    hasNext()=0;
   //virtual Object  next()=0;    
+  virtual string get(int idx) =0;  
+  virtual string operator [](int idx) =0;  
 };
 
 #endif  //__ITERATOR_H__
