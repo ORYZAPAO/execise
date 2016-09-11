@@ -5,6 +5,7 @@ class Iterator;
 class Aggregate{
  public:
   virtual Iterator* iterator() =0;  
+
 };
 
 #endif // __AGGREGATE_H__
