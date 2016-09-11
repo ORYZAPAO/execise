@@ -23,10 +23,28 @@ public:
 };
 
 
+// イテレータ
+// 
+//
+class BookIterator : public Iterator{
+private :
+  Aggregate *m_aggrgate;
+
+public:
+  BookIterator(Aggregate *a) : m_aggrgate(a){} 
+
+  virtual bool hasNext(){ return false;}
+
+  string operator [](int idx){
+    return dynamic_cast<Iterator*>(m_aggrgate)->getBook(idx);
+  }
+  //  virtual Object
+};
+
+
 // 本の管理クラス(BookShelf)
 //
 //
-class BookIterator;
 class BookShelf : public Aggregate {
 private:
   vector<Book> m_book;
@@ -45,25 +63,6 @@ public:
     return m_book[idx].getName();
   }
 };
-
-// イテレータ
-// 
-//
-class BookIterator : public Iterator{
-private :
-  Aggregate *m_aggrgate;
-
-public:
-  BookIterator(Aggregate *a) : m_aggrgate(a){} 
-
-  virtual bool hasNext(){ return false;}
-
-  string operator [](int idx){
-    return dynamic_cast<BookShelf*>(m_aggrgate)->getBook(idx);
-  }
-  //  virtual Object
-};
-
 
 
 //
