@@ -67,9 +67,10 @@ public:
   }
 
   void printList(){
-    for_each(m_book.begin(), m_book.end(), [](Book &bk){ cout << bk.getName() << endl; });
-  }
-  
+    for_each(m_book.begin(),
+             m_book.end(),
+             [](Book &bk){ cout << bk.getName() << endl; });
+  } 
 };
 
 
