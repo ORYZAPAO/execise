@@ -4,7 +4,7 @@
 ## -------------------------------------
 SRC = main.cpp
 
-CC     = clang++
+CC     = clang++ -g
 ##CC     = g++
 CCOPT  = -std=c++14 
 TARGET = a.exe
