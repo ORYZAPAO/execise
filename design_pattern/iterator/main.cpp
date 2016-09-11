@@ -12,6 +12,9 @@ using namespace std;
 #include"aggregate.h"
 #include"iterator.h"
 
+// 本
+//
+//
 class Book{
 private:
   string m_name;
