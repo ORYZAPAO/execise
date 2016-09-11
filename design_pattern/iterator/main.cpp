@@ -74,10 +74,6 @@ public:
 
 
 
-string BookIterator::get(int idx){
-  ///return dynamic_cast<BookShelf*>(m_aggrgate)->getBook(idx);
-  return dynamic_cast<BookShelf*>(m_aggrgate)->getBook(idx);
-}
 string BookIterator::operator [](int idx){
   return dynamic_cast<BookShelf*>(m_aggrgate)->getBook(idx);
 }
