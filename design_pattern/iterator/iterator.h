@@ -5,7 +5,7 @@ class Object;
 
 class Iterator{
  public :
-  virtual bool    hasNext()=0;
+  virtual bool   hasNext()=0;
   //virtual Object  next()=0;    
   virtual string operator [](int idx) =0;  
 };
