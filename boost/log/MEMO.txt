@@ -1,0 +1,1 @@
+ls! g++ -std=c++11 main.cpp -lboost_thread -lboost_system -lboost_log -lboost_log_setup -pthread 
