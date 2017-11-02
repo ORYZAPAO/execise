@@ -10,7 +10,7 @@ int main(){
 
   //  *cpDat=200;   // Error
   cpDat = &Dat;
-  ///ccpDat = &Dat; // Error
+  //　　ccpDat = &Dat; // Error
   *ccpDat = 999;
 
   cout << boost::format("Dat=%d") % Dat  << endl;
