@@ -3,6 +3,7 @@
 
 using namespace std;
 
+//////////////////////////////////////////////////
 class MyClass{
 private:
   int dat;
@@ -54,6 +55,7 @@ public:
 };
 
 
+//////////////////////////////////////////////////
 int main(){
   cout << "hello" << endl;
 
