@@ -8,39 +8,43 @@ private:
   int dat;
 
 public:  
+
+  // --------------------------------------------------
   MyClass():dat(0){ };
   MyClass(int d):dat(d){
     cout << boost::format("[Constructor] (%d)") % dat << endl;
   };
 
-  // [Constructor] Copy 
+  // [Constructor] Copy コピーコンストラクタ
   MyClass(const MyClass &my):dat(my.dat){
     cout << boost::format("[Constructor] Copy (%d)") % dat << endl;
   }
 
-  // [Assignment] Copy 
+  // [Assignment] Copy コピー代入
   MyClass& operator=(const MyClass &my){
     dat = my.dat;
     cout << boost::format("[Assignment] Copy (%d)") % dat << endl;
     return(*this); }
 
-  // [Constructor] Move
+  // [Constructor] Move ムーブコンストラクタ  // ムーブでは、const は受け取らないが、一応、動く
   MyClass(const MyClass &&my):dat(my.dat){
     cout << boost::format("[Constructor] Move (%d)") % dat << endl;    
   }
 
-  // [Assignment] Move 
-  //MyClass& operator=(const MyClass &&my){
+  // [Assignment] Move ムーブ代入
+  //MyClass& operator=(const MyClass &&my){　 // ムーブでは、const は受け取らないが、一応、動く
   MyClass& operator=(MyClass &&my){
     dat = my.dat;
     cout << boost::format("[Assignment] Move (%d)") % dat << endl;
     return(*this); }
 
-
+  // デストラクタ
   ~MyClass(){
     cout << "Destroy!!" << endl; 
   }
-  
+
+
+  // --------------------------------------------------
   // cout 
   friend ostream& operator<<(ostream& os, MyClass& my){
     cout << boost::format("dat[%d]") % my.dat;
@@ -59,8 +63,8 @@ int main(){
   cout << my0 << endl;
   cout << my1 << endl;
 
-  my1 = std::move(my0);
-  MyClass my2(std::move(my0));
+  my1 = std::move(my0);        // Move Assignment 
+  MyClass my2(std::move(my0)); // Move Constructor
   
   cout << my0 << endl;
   cout << my1 << endl;
