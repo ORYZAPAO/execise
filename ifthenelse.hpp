@@ -1,7 +1,7 @@
 #ifndef __IFTHENELSE_HPP
 #define __IFTHENELSE_HPP
 
-namespace oyzalib{
+namespace oryzalib{
 
 template<bool bl, class Tr, class Fl>
 class IfThenElse;
