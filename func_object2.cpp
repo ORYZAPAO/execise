@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// 数えるアルゴリズム count()
 template<typename C, typename P>
 int count(const C&c, P pred){ // predはカウント対象の判定する関数Object
 
@@ -22,8 +23,10 @@ int main(){
   cout << "Data ={ ";
   for(auto x : list) cout << x << " "; 
   cout << "}" << endl; 
- 
+
   // vector<int>list中の、正数を数える
+  //
+  // count()アルゴリズムに、関数Objectを渡して(ラムダ関数形式で)、カウントさせる
   //
   // count = 2
   //
