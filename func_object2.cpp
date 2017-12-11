@@ -8,8 +8,8 @@ using namespace std;
 // 数えるアルゴリズム count()
 template<typename C, typename P>
 int count(const C&c, P pred){ // predはカウント対象の判定する関数Object
-
   int cnt=0;
+
   for(const auto&x : c) if( pred(x) ) cnt++;   
   return cnt;
 }
