@@ -18,7 +18,8 @@ public:
 
 class B : public A{
 public:
-  using A::A; // Aのコンストラクタを利用
+  //
+  using A::A; // <---- Aのコンストラクタを利用
 
   B(){}
   virtual ~B(){}
@@ -30,9 +31,9 @@ public:
 template<typename T>
 class vec2 : public vector<T>{
 public:
-  // vector<T>のコンストラクタを利用
+
   //
-  using vector<T>::vector; 
+  using vector<T>::vector; // <-- vector<T>のコンストラクタを利用
 
   //------------------------------
   // 要素を返す。
@@ -46,6 +47,8 @@ public:
     return vector<T>::at(i); 
   }
 
+  virtual ~vec2(){}
+  
 };
 
 
