@@ -23,16 +23,21 @@ int main(){
   //------------------------------
   // C言語由来の配列 と Range
   //------------------------------
-  cout << "Step.1) c array and Rabge" << endl;
-  int  ll[] = {0,1,2,3,4,5,6,7}; // 従来のC形式の配列
+  cout << "Step.1) C language format array and Rabge" << endl;
+  int  ll[] = {0,1,2,3,4,5,6,7}; // 従来のC言語形式の配列
 
-  
   cout << "  Scope For" << endl;
   for(auto &d : ll){   // 範囲for文が、使用可
     cout << " " <<  d;
   }
-  cout << endl << endl;
+  cout << endl;
 
+  // cout << " * begin()-end() Roop" << endl;   // C言語形式の配列では
+  // for(auto i=ll.begin(); i<ll.end(); i++){   // begin() - end() は使用不可
+  //   cout << " " << *i;
+  // }
+  cout << endl;
+  
   
   //------------------------------
   // C++ の vector<> と Range
