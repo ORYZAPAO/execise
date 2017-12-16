@@ -6,6 +6,17 @@ using namespace std;
 
 // ----------------------------------------
 // Range Sample
+//
+// 実行例
+//  Step.1) c array and Rabge
+//    Scope For
+//   0 1 2 3 4 5 6 7
+//  
+//  Step.2) c++ vector<> and Range
+//   * Scope For
+//   0 1 2 3 4 5 6 7
+//   * begin()-end() Roop
+//   0 1 2 3 4 5 6 7
 // ----------------------------------------
 int main(){
 
