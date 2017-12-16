@@ -40,7 +40,7 @@ public:
     return(*this); }
 
   // デストラクタ
-  ~MyClass(){
+  virtual ~MyClass(){ // 親クラスとして使う場合は、デストラクタはvirtual
     cout << "Destroy!!" << endl; 
   }
 
