@@ -47,6 +47,10 @@ namespace MY{
   }
 
 
+// 
+//[from] /usr/include/c++/7.2.1/bits/move.h
+//
+
   /**
    *  @brief  Forward an lvalue.
    *  @return The parameter cast to the specified type.
