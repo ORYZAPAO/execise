@@ -46,6 +46,4 @@ namespace MY{
     return static_cast<typename std::remove_reference<_Tp>::type&&>(__t);
   }
 
-
-
 };
