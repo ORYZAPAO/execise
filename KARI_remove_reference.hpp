@@ -4,6 +4,7 @@
 
 // Reference transformations.
 
+namespace MY{
   /// remove_reference
   template<typename _Tp>
     struct remove_reference
@@ -30,3 +31,21 @@
   template<typename _Tp>
     using add_rvalue_reference_t = typename add_rvalue_reference<_Tp>::type;
 #endif
+
+
+
+  template<typename _Tp>
+  constexpr typename std::remove_reference<_Tp>::type&
+    move2(_Tp& __t) noexcept{
+    return static_cast<typename std::remove_reference<_Tp>::type&>(__t);
+  }
+
+  template<typename _Tp>
+  constexpr typename std::remove_reference<_Tp>::type&&
+    move2(_Tp&& __t) noexcept{
+    return static_cast<typename std::remove_reference<_Tp>::type&&>(__t);
+  }
+
+
+
+};
