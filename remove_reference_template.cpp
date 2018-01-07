@@ -10,7 +10,7 @@
 
 using namespace std;
 
-///#include"remove_reference_KARI.hpp"
+///#include"remove_reference_KARI_template.hpp"
 
 
 int main(){
