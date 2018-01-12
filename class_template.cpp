@@ -10,7 +10,7 @@
 using namespace std;
 
 //////////////////////////////////////////////////
-// クラステンプレートの定義
+// MyClassクラステンプレートの定義
 //
 template<typename T0>
 class MyClass{
@@ -18,7 +18,6 @@ private:
   T0 dat;
 
 public:  
-
   // --------------------------------------------------
   // MyClassクラステンプレートの,
   // メンバテンプレート関数（コンストラクタ）の宣言＋定義
@@ -56,7 +55,6 @@ template<typename T1>
 void MyClass<T0>::func_template(){
   cout << "[func_template] dat(" << dat << ")" << endl;
 }
-
 
 
 //////////////////////////////////////////////////
