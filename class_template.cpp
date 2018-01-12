@@ -70,8 +70,8 @@ int main(){
   string  s0("MacOS");
   float   f0(100.0f);
   MyClass<string> a(s0, &f0);  // "[Constructor] dat(MacOS), ptr(0x7fff5a69b5c4)"
-  a.func();                     // "[func] dat(MacOS)"
-  a.func_template<int>();       // "[func_template] dat(MacOS)"
+  a.func();                    // "[func] dat(MacOS)"
+  a.func_template<int>();      // "[func_template] dat(MacOS)"
 
   cout << endl;
   
