@@ -1,5 +1,5 @@
 #include<iostream>
-#include<fstream> /// fstream
+#include<fstream>
 #include<string>
 
 using namespace std;
@@ -21,7 +21,7 @@ int main()
   // ate	 seek to the end of stream immediately after open
 
   aa << "Hello" << endl;
-  aa << "ぞうさん" << endl;
+  aa << "Elephant" << endl;
   
 
   //  cout << buf << endl;
