@@ -38,8 +38,18 @@ int main(){
   std::function<int(int,int)> ff = std::bind(func, std::placeholders::_1, 100, std::placeholders::_2);
   //std::function<int(int,int)> ff = std::bind(func, _1,  100, _2);
   //auto ff = std::bind(func, _1, 100, _2);
-  
+
+  // "1"
+  // "2"
+  // "3"
+  // "func(1,2,3) = 6"
   cout << boost::format("func(1,2,3) = %d") % func(1,2,3) << endl;
+
+  // "1"
+  // "100"
+  // "2"
+  // "ff(1,2)      =103"
+  // "   ※func(1,100,2)の呼出をラップした ff()"
   cout << boost::format("ff(1,2)      =%d") % ff(1,2)     << endl;
   cout << boost::format("   ※func(1,100,2)の呼出をラップした ff()") << endl;
   
