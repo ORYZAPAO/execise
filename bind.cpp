@@ -41,6 +41,6 @@ int main(){
   
   cout << boost::format("func(1,2,3) = %d") % func(1,2,3) << endl;
   cout << boost::format("ff(1,2)      =%d") % ff(1,2)     << endl;
-  cout << boost::format("   ※func(1,100,2)の呼出をラップ") << endl;
+  cout << boost::format("   ※func(1,100,2)の呼出をラップした ff()") << endl;
   
 }
