@@ -21,8 +21,8 @@ int main(){
   using namespace std::placeholders; 
 
   // 1) 説明
-  //   std::bindは、bind(func,...)で指定した関数funcから、同じく指定した引数の並びbind(func,_1,_2,...)の
-  //   function オブジェクトを作る
+  //   std::bindは、bind(func,...)で指定した関数funcから、
+  //   同じく指定した引数の並びbind(func,_1,_2,...)のfunction オブジェクトを作る
   //
   //   例）std::bind(func, std::placeholders::_1, std::placeholders::_2, 100); 
   //        func(１個目の引数, ２個目の引数, 100)呼出しをラップした、function オブジェクトを作る
