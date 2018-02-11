@@ -17,14 +17,14 @@ int main(){
   string   s0 = "猫、犬、うさぎ"; // std::sting
   string &rs0 = s0;              // std::sting& (参照)
 
-  // 
+  // 参照を使ってみただけ。。。
   // 
   cout << boost::format("string   s0(%s)") %  s0 << endl;
   cout << boost::format("string &rs0(%s)") % rs0 << endl;
   cout << endl;
   
-  // 型情報から参照を外して、
-  // その型で、変数ABCを定義
+  // 指定した型情報(例:string&)から、参照を外して(例:string)、
+  // その型(string)で、変数SSSを定義
   std::remove_reference<string&>::type  SSS("あかねいろ");
   cout << boost::format("remove_reference<string&>::type(string& --> string) SSS(%s)") % SSS << endl;
 
