@@ -20,20 +20,30 @@ int func(int a, int b, int c){
 int main(){
   using namespace std::placeholders; 
 
+  // std::bind(func, func()に渡す最初1個目のパラメータ, 〜に渡す2個目のパラメータ, 〜に渡す3個目のパラメータ ...); 
+  //
   // 1) 説明
-  //   std::bindは、bind(func,...)で指定した関数funcから、
-  //   同じく指定した引数の並びbind(func,_1,_2,...)のfunction オブジェクトを作る
-  //
-  //   例）std::bind(func, std::placeholders::_1, std::placeholders::_2, 100); 
-  //        func(１個目の引数, ２個目の引数, 100)呼出しをラップした、function オブジェクトを作る
+  //   要するに、"指定した関数をラッパーする"関数オブジェクトを作る
   //   
-  //       --->std::bindで、生成される function オブジェクトの形式
+  //   std::bind(func,...)で指定した、関数funcから、
+  //     指定したパラメータ並び、 func(_1, _2, _3, ...) を呼び出すような、関数オブジェクト(std::function型)を作る
+  //   
+  // 2) 例
+  //    // func(１個目の引数, ２個目の引数, 100)関数呼出しをする、関数オブジェクトを作る
+  //    auto NewFunc = std::bind(func, std::placeholders::_1, std::placeholders::_2, 100); 
+  //   
+  //       --->生成される 関数オブジェクト NewFunc のイメージ
   //
-  //                 std::function<int(int,int)> 
-  //                                    |   |
-  //                std::placeholders::_1    std::placeholders::_2 
-  //             func()へ渡す１個目の引数    ２個目の引数
+  //                  NewFunc(1,2){  // .......(*1)
+  //                    return func(1,2,100);
+  //                  }
   //
+  //           (*1) std::function<int(int,int)> NewFunc;
+  //                                  |   |
+  //              std::placeholders::_1   std::placeholders::_2 
+  //           func()へ渡す１個目の引数    ２個目の引数
+  //
+  //}
 
   std::function<int(int,int)> ff = std::bind(func, std::placeholders::_1, 100, std::placeholders::_2);
   //std::function<int(int,int)> ff = std::bind(func, _1,  100, _2);
