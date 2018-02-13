@@ -19,7 +19,7 @@ public:
 class B : public A{
 public:
   //
-  using A::A; // <---- Aのコンストラクタを利用
+  using A::A; // <---- 基本クラス（派生元の）Aのコンストラクタを利用
 
   B(){}
   virtual ~B(){}
@@ -33,7 +33,7 @@ class vec2 : public vector<T>{
 public:
 
   //
-  using vector<T>::vector; // <-- vector<T>のコンストラクタを利用
+  using vector<T>::vector; // <-- 基本クラス（派生元の）Aのvector<T>のコンストラクタを利用
 
   //------------------------------
   // 要素を返す。
