@@ -39,7 +39,7 @@ int main(){
   try{
 
     cout << "例外を発生"  << endl;
-    myexcept e("何か起きた！！");
+    myexcept e("何か起きた！！"); // <-- エラー説明
     throw e ; // 例外送出（スルー）
     // Memo) C++文法的には、throw に渡す型は、なんでも良さそうだが、
     //       実際は、catch し易いように、std::exceptionの派生クラス型を使う
