@@ -1,3 +1,5 @@
+#pragma comment(lib,"opencv_world310.lib")
+
 #include<iostream>
 #include<opencv2/opencv.hpp>
 
@@ -5,8 +7,6 @@ using namespace std;
 using namespace cv;
 
 int main(){
-  cout << "Hello" << endl;
-
   Mat img_src;
   Mat img_dst;
 
@@ -27,8 +27,5 @@ int main(){
     if( waitKey(1) == 'q' ) break;
   }
 
-
   return 0;
-  
-  
 }
