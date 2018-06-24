@@ -1,4 +1,4 @@
-// pimple.cpp
+// pimple_idiom.cpp
 //
 // Pimple イディオム のテクニック
 //
