@@ -43,7 +43,7 @@ int main(){
   // C++ の vector<> と Range
   //------------------------------
   cout << "Step.2) c++ vector<> and Range" << endl;
-  vector<int> vec ={0,1,2,3,4,5,6,7}; // 従来のC形式の配列
+  vector<int> vec ={0,1,2,3,4,5,6,7}; // vector配列
 
   cout << " * Scope For" << endl;
   for(auto &d : vec){   // 範囲for文
