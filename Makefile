@@ -11,7 +11,7 @@ CCASM =
 CCDBG =
 
 CC     = clang++
-CCOPT  = -std=c++11 $(CCDBG) $(CCASM)
+CCOPT  = -std=c++1y $(CCDBG) $(CCASM)
 TARGET = a.out
 
 LINKOPT = 
