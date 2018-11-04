@@ -7,13 +7,18 @@ SRC = ttxxx
 ## アセンブル結果出力
 ##CCASM = -S -mllvm -x86-asm-syntax=intel 
 CCASM =
-##CCDBG = -g
-CCDBG =
+DEBUG = 0
+
+ifeq ($(DEBUG),1)
+  CCDBG = -g
+else
+  CCDBG  =
+endif
 
 CC     = clang++
+
 CCOPT  = -std=c++1y $(CCDBG) $(CCASM)
 TARGET = a.out
-
 LINKOPT = 
 
 $(TARGET) : $(SRC)
