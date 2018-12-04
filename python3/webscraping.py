@@ -3,28 +3,34 @@
 import urllib.request
 from bs4 import BeautifulSoup
 
-# ƒAƒNƒZƒX‚·‚éURL
-url = "http://www.nikkei.com/"
+import re
 
-# URL‚ÉƒAƒNƒZƒX‚·‚é html‚ª‹A‚Á‚Ä‚­‚é ¨ <html><head><title>ŒoÏAŠ”‰¿AƒrƒWƒlƒXA­Ž¡‚Ìƒjƒ…[ƒX:“úŒo“dŽq”Å</title></head><body....
+# ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹URL
+url = "https://www.nikkei.com/"
+
+# URLã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ htmlãŒå¸°ã£ã¦ãã‚‹ â†’ <html><head><title>çµŒæ¸ˆã€æ ªä¾¡ã€ãƒ“ã‚¸ãƒã‚¹ã€æ”¿æ²»ã®ãƒ‹ãƒ¥ãƒ¼ã‚¹:æ—¥çµŒé›»å­ç‰ˆ</title></head><body....
 html = urllib.request.urlopen(url).read()
 
-# html‚ðBeautifulSoup‚Åˆµ‚¤
+# htmlã‚’BeautifulSoupã§æ‰±ã†
 soup = BeautifulSoup(html, "html.parser")
 
 
-lst = soup.select("h2")
+##lst = soup.select("a")
+##lst = soup.find_all("a", text=re.compile("article"))
+lst = soup.find_all("a", href=re.compile("article"))
 for article in lst:
-    print(article)
-    
+    msg = article.string
+    if( msg != None ):
+        if( (u"None" != msg) and (u"â€¦ç¶šã" != msg) ):
+            print(article.string)
 
 
-# ƒ^ƒCƒgƒ‹—v‘f‚ðŽæ“¾‚·‚é ¨ <title>ŒoÏAŠ”‰¿AƒrƒWƒlƒXA­Ž¡‚Ìƒjƒ…[ƒX:“úŒo“dŽq”Å</title>
+# ã‚¿ã‚¤ãƒˆãƒ«è¦ç´ ã‚’å–å¾—ã™ã‚‹ â†’ <title>çµŒæ¸ˆã€æ ªä¾¡ã€ãƒ“ã‚¸ãƒã‚¹ã€æ”¿æ²»ã®ãƒ‹ãƒ¥ãƒ¼ã‚¹:æ—¥çµŒé›»å­ç‰ˆ</title>
 title_tag = soup.title
 
-# —v‘f‚Ì•¶Žš—ñ‚ðŽæ“¾‚·‚é ¨ ŒoÏAŠ”‰¿AƒrƒWƒlƒXA­Ž¡‚Ìƒjƒ…[ƒX:“úŒo“dŽq”Å
+# è¦ç´ ã®æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹ â†’ çµŒæ¸ˆã€æ ªä¾¡ã€ãƒ“ã‚¸ãƒã‚¹ã€æ”¿æ²»ã®ãƒ‹ãƒ¥ãƒ¼ã‚¹:æ—¥çµŒé›»å­ç‰ˆ
 title = title_tag.string
 
-# ƒ^ƒCƒgƒ‹—v‘f‚ðo—Í
-print(title_tag)
-print(title)
+# ã‚¿ã‚¤ãƒˆãƒ«è¦ç´ ã‚’å‡ºåŠ›
+#print(title_tag)
+#print(title)
