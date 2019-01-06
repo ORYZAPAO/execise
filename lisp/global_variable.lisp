@@ -1,5 +1,5 @@
 ;;
-;; 変数定義
+;; グローバル変数定義
 ;;
 (defparameter a 101) ; a=101 定義
 (defparameter b 99)  ; a=99 定義
