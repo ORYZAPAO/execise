@@ -1,6 +1,9 @@
 // Gnu Readline Sample
 //
-// > g++ readline.cpp -lreadline
+// * [Run]
+//    > g++ readline.cpp -lreadline
+//    or
+//    > make SRC=readline.cpp LINKOPT=-lreadline
 //
 
 // 下記を include する
@@ -8,7 +11,6 @@
 #include <cstdlib>
 #include <readline/readline.h>
 #include <readline/history.h>
-
 
 int main(void)
 {
