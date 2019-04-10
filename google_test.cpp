@@ -9,6 +9,8 @@
  * [Run]
  *  make -k SRC=google_test.cpp LINKOPT=-lgtest
  *
+ *  g++ -std=c++1y -isystem -pthread google_test.cpp -I../googletest/googletest/include -L../googletest/lib -lgtest
+ *
  */
 #include <gtest/gtest.h>
 ///#pragma comment(linker, "-lgtest" )
