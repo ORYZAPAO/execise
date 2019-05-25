@@ -17,7 +17,8 @@ endif
 
 CC     = clang++
 
-CCOPT  = -std=c++1y $(CCDBG) $(CCASM)
+##CCOPT  = -std=c++1y $(CCDBG) $(CCASM)
+CCOPT  = -std=c++17 $(CCDBG) $(CCASM)
 TARGET = a.out
 LINKOPT = 
 
