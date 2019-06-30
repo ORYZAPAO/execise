@@ -12,7 +12,7 @@ using namespace std;
 //////////////////////////////////////////////////
 // MyClassクラステンプレートの定義
 //
-template<typename T0>
+template<typename T0> // <-- クラスのテンプレート
 class MyClass{
 private:
   T0 dat;
@@ -21,12 +21,12 @@ public:
 
   // --------------------------------------------------
   //コンストラクタ宣言＋定義
-  template<typename T1=int> 
+  template<typename T1=int>  // <-- メンバ関数のテンプレート
   MyClass():dat(nullptr){
     cout << "[Constructor] dat(" << dat << ")" << endl;
   };
 
-  template<typename T1=int> 
+  template<typename T1=int> // <-- メンバ関数のテンプレート
   MyClass(T0 d, T1 *ptr=nullptr):dat(d){
     //cout << "[" << typeid(d).name() << "]  " 
     cout << "[Constructor] dat(" << dat << "), "
