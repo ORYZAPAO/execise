@@ -19,7 +19,8 @@ private:
 
 public:  
   // --------------------------------------------------
-  // MyClassクラステンプレートの,
+  // クラステンプレート
+  //
   // メンバテンプレート関数（コンストラクタ）の宣言＋定義
   template<typename T1=int> 
   MyClass():dat(nullptr){
@@ -34,24 +35,24 @@ public:
   };
 
   // --------------------------------------------------
-  // MyClassクラステンプレートの, メンバ関数の宣言
+  // メンバ関数の宣言
   void func();
   
   // --------------------------------------------------
-  // MyClassクラステンプレートの, メンバテンプレート関数の宣言
+  // メンバテンプレート関数の宣言
   template<typename T1> void func_template();
 
 };
 
-// MyClassクラステンプレートの,　メンバ関数の定義（クラス定義の外で、定義）
-template<typename T0>
+// メンバ関数の定義（クラス定義の外で、定義）
+template<typename T0> // <-- クラスのテンプレート
 void MyClass<T0>::func(){
   cout << "[func] dat(" << dat << ")" << endl;
 }
 
-// MyClassクラステンプレートの,　メンバテンプレート関数の定義（クラス定義の外で、定義）
-template<typename T0>
-template<typename T1>
+// メンバテンプレート関数の定義（クラス定義の外で、定義）
+template<typename T0> // <-- クラスのテンプレート
+template<typename T1> // <-- メンバ関数のテンプレート
 void MyClass<T0>::func_template(){
   cout << "[func_template] dat(" << dat << ")" << endl;
 }
