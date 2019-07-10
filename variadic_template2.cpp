@@ -54,6 +54,21 @@ public:
   XX(){ std::cout << "HAPPY, "; }
 };
 
+
+// ------------------------------------------------------------
+// ------------------------------------------------------------
+// get the first argument
+template< class... >
+struct first_type // first_type <> ... Compile Error
+{ /* Args is empty*/ };
+
+template< class Head, class... Body >
+struct first_type < Head, Body... > // 最初の１つはHeadに、残りはBodyに入れられる
+{
+  using type = Head;
+};
+
+
 // ----------------------------------------
 // ----------------------------------------
 int main(){
