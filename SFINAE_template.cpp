@@ -47,7 +47,7 @@ bool has_data(){
 // ------------------------------------------------------------
 // TEST 2
 // ------------------------------------------------------------
-// iterator 所持の判定
+// iterator 所持の判定(SFINAE)
 template<class T>
 bool has_iterator_impl(typename T::iterator*){
   return true;
