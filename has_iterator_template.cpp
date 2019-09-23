@@ -1,7 +1,7 @@
 // ------------------------------------------------------------
-// basic.cpp
+// has_iterator_template.cpp
 //
-// 
+//   イテレータ有無の判定を、メタ関数（テンプレート）で行うサンプル
 //
 // ------------------------------------------------------------
 #include<iostream>
@@ -11,7 +11,7 @@ using namespace std;
 
 
 // ------------------------------------------------------------
-// イテレータがあるか、<引数>で判断する
+// イテレータ有無を、<引数>で判断する
 //
 //
 struct has_iterator_impl{
@@ -31,37 +31,36 @@ class has_iterator :
   public decltype(has_iterator_impl::check<T>(nullptr)) {};
 
 // ------------------------------------------------------------
-// イテレータがあるか判断する
+// イテレータ有無を、<戻り値>で判断する
 //
 //
 struct has_iterator_impl2{
   template<class T>
-  //static auto check() -> decltype(std::declval<T::iterator*>,
-  static auto check() -> decltype(std::declval<T>().begin(),
-                                  std::true_type());  
+  //static auto check(T*) -> decltype(std::declval<T>.iterator, // NG
+  static auto check(T*) -> decltype(std::declval<T>().begin(),  // OK
+                                     std::true_type());  
   template<class T>
-  static auto check() -> decltype(std::false_type());  
+  static auto check(...) -> decltype(std::false_type());  
 };
 
 
 template<class T>
 class has_iterator2 :
-  public decltype(has_iterator_impl2::check<T>()) {};
+  public decltype(has_iterator_impl2::check<T>(nullptr)) {};
+
+
 // ------------------------------------------------------------
-
-
-
-
+// ------------------------------------------------------------
 int main(){
   std::cout << "Hello" << std::endl;
   
   std::cout << "-------------------" << std::endl;
-  std::cout << has_iterator<std::vector<int>>::value << std::endl;
-  std::cout << has_iterator<int>::value              << std::endl;
+  std::cout << has_iterator<std::vector<int>>::value << std::endl; // "1" イテレータ有り
+  std::cout << has_iterator<int>::value              << std::endl; // "0"           無し
 
   std::cout << "-------------------" << std::endl;
-  std::cout << has_iterator2<std::vector<int>>::value << std::endl;
-  std::cout << has_iterator2<int>::value              << std::endl;
+  std::cout << has_iterator2<std::vector<int>>::value << std::endl; // "1" イテレータ有り
+  std::cout << has_iterator2<int>::value              << std::endl; // "0"           無し
 
 }
 
