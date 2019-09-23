@@ -37,10 +37,10 @@ class has_iterator :
 struct has_iterator_impl2{
   template<class T>
   //static auto check() -> decltype(std::declval<T::iterator*>,
-  static auto check() -> decltype(T::begin(),
+  static auto check() -> decltype(std::declval<T>().begin(),
                                   std::true_type());  
-  //template<class T>
-  //static auto check() -> decltype(std::false_type());  
+  template<class T>
+  static auto check() -> decltype(std::false_type());  
 };
 
 
@@ -61,7 +61,7 @@ int main(){
 
   std::cout << "-------------------" << std::endl;
   std::cout << has_iterator2<std::vector<int>>::value << std::endl;
-  //std::cout << has_iterator2<int>::value              << std::endl;
+  std::cout << has_iterator2<int>::value              << std::endl;
 
 }
 
