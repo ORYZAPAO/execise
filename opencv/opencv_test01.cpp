@@ -1,7 +1,7 @@
 #include "opencv2/opencv.hpp"
 
 #include <opencv2/videoio.hpp>
-#include "opencv/highgui.h"
+#include <opencv2/highgui.hpp>
 
 #include <iostream>
 #include <vector> //追加
@@ -42,7 +42,7 @@ void test2(){
     cap >> img;
 
     /////////////////////
-    cvtColor(img, gray_img, CV_BGR2GRAY);
+    cvtColor(img, gray_img, /*CV_BGR2GRAY*/COLOR_BGR2GRAY);
     threshold(gray_img, bin_img, 70, 255, THRESH_BINARY);
     //追加ここから
     bin_img = ~bin_img; //色反転
@@ -52,7 +52,7 @@ void test2(){
 
     ///////面積計算//////////////
     vector<vector<Point> > contours;
-    findContours(bin_img, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
+    findContours(bin_img, contours, /*CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE*/ RETR_EXTERNAL, CHAIN_APPROX_NONE);
 
     double max_area = 0;
     int max_area_contour = -1;
@@ -100,7 +100,7 @@ void test1(){
   for(;;){
     Mat frame;
     cap >> frame; // カメラから新しいフレームを取得
-    cvtColor(frame, edges, CV_BGR2GRAY);
+    cvtColor(frame, edges, /*CV_BGR2GRAY*/COLOR_BGR2GRAY);
     GaussianBlur(edges, edges, Size(7, 7), 1.5, 1.5);
     Canny(edges, edges, 0, 30, 3);
     imshow("edges", edges);
