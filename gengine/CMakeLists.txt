@@ -78,4 +78,22 @@ include_directories(SYSTEM
 #include_directories(
 #  ${CMAKE_CURRENT_SOURCE_DIR}/include/)
 
-target_link_libraries(gengine ${SDL2_LIBRARIES}  ${SDL2IMAGE_LIBRARY} SDL2_image ) 
+
+set(LINK_OPT "")
+if(WIN32)
+  message("WIN32")
+elseif(UNIX)
+  if(APPLE)
+    message("APPLE")
+    set(LINK_OPT "-L /usr/local/lib")
+  else()
+    message("UNIX/LINUX")
+  endif()
+endif()
+
+target_link_libraries(
+  gengine
+  $(LINK_OPT)
+  ${SDL2_LIBRARIES}
+  ${SDL2IMAGE_LIBRARY} SDL2_image
+  ) 
