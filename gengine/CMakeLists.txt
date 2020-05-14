@@ -93,7 +93,7 @@ endif()
 
 target_link_libraries(
   gengine
-  $(LINK_OPT)
+  ${LINK_OPT}
   ${SDL2_LIBRARIES}
   ${SDL2IMAGE_LIBRARY} SDL2_image
   ) 
