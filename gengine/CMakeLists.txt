@@ -46,7 +46,7 @@
 project(gengine)
 
 cmake_minimum_required(VERSION 2.8)
-#add_subdirectory(mod1)                # <- new
+add_subdirectory(src)                # <- new
 #add_subdirectory(mod2)                # <- new
 #
 #execute_process( 外部コマンドを呼び出す
@@ -93,6 +93,7 @@ endif()
 
 target_link_libraries(
   gengine
+  src
   ${LINK_OPT}
   ${SDL2_LIBRARIES}
   ${SDL2IMAGE_LIBRARY} SDL2_image
