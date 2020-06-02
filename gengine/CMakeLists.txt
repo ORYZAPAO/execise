@@ -46,14 +46,19 @@
 project(gengine)
 
 cmake_minimum_required(VERSION 2.8)
-add_subdirectory(src)                # <- new
+##add_subdirectory(mod1)                # <- new
 #add_subdirectory(mod2)                # <- new
 #
 #execute_process( 外部コマンドを呼び出す
 #        COMMAND make -f exec_flex.mak 
 #        WORKING_DIRECTORY lex)
 #
-add_executable(gengine main.cpp)
+add_executable(gengine
+  main.cpp
+  ./src/init.cpp
+  ./src/surface.cpp
+  ./src/app.cpp
+  )
 add_definitions("-Wall -g") 
 
 
@@ -71,6 +76,7 @@ pkg_search_module(SDL2_image REQUIRED SDL2_image)
 
 # OpenGL、Boost、SDL2をincludeパスに設定
 include_directories(SYSTEM
+ ./src
  ${Boost_INCLUDE_DIRS}
  ${SDL2_INCLUDE_DIRS}
  ${SDL2IMAGE_INCLUDE_DIRS}
@@ -93,7 +99,7 @@ endif()
 
 target_link_libraries(
   gengine
-  src
+#  src
   ${LINK_OPT}
   ${SDL2_LIBRARIES}
   ${SDL2IMAGE_LIBRARY} SDL2_image

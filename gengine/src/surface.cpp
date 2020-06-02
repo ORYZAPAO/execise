@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string>
 
-extern SDL_Surface* loadSurface( std::string );
+#include<gengine.h>
 
 // loadSurface
 //

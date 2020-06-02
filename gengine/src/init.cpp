@@ -4,19 +4,11 @@
 #include <stdio.h>
 #include <string>
 
-extern bool init();
+#include"gengine.h"
 
-//The window we'll be rendering to
-extern SDL_Window* gWindow;
-
-extern const int SCREEN_WIDTH;
-extern const int SCREEN_HEIGHT;
-
-extern SDL_Surface* gScreenSurface;
-
-// 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
+
 
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
@@ -24,10 +16,10 @@ SDL_Window* gWindow = NULL;
 //The surface contained by the window
 SDL_Surface* gScreenSurface = NULL;
 
-
 // 
 //
 //
+extern bool my_init();
 bool init(){
   //Initialization flag
   bool success = true;
@@ -48,5 +40,32 @@ bool init(){
     }
   }
   
+  if( success ) my_init();
+
   return success;
+}
+
+
+
+//
+//
+//
+extern void  my_close();
+void close()
+{
+  //Deallocate surfaces
+  my_close();
+  
+  //Destroy window
+  SDL_DestroyWindow( gWindow );
+  gWindow = NULL;
+  
+  //Quit SDL subsystems
+  SDL_Quit();
+}
+
+
+extern void  my_key_down(SDL_Event* event);
+void key_down(SDL_Event* event){
+  my_key_down(event);
 }
