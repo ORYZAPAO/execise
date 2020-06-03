@@ -13,12 +13,14 @@ SDL_Surface* gKeyPressSurfaces[ KEY_PRESS_SURFACE_TOTAL ];
 SDL_Surface* gCurrentSurface = NULL;
 
 extern void my_init();
-extern void  my_close();
+extern void my_close();
 extern void my_key_down(SDL_Event* event);
-
 
 bool loadMedia();
 
+//
+//
+//
 void my_init(){
   //Load media
   if( !loadMedia() ){
@@ -29,6 +31,9 @@ void my_init(){
   gCurrentSurface = gKeyPressSurfaces[ KEY_PRESS_SURFACE_DEFAULT ];
 }
 
+//
+//
+//
 void my_close()
 {
   //Deallocate surfaces
@@ -39,7 +44,17 @@ void my_close()
     }  
 }
 
+//
+//
+//
+void my_draw(){
+  //Apply the current image
+  SDL_BlitSurface( gCurrentSurface, NULL, gScreenSurface, NULL );
+}
 
+//
+//
+//
 void my_key_down(SDL_Event* event){
   //Select surfaces based on key press
   switch( event->key.keysym.sym ) {
@@ -65,7 +80,6 @@ void my_key_down(SDL_Event* event){
   }
 
 }
-
 
 
 

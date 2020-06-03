@@ -25,6 +25,10 @@ extern const int SCREEN_HEIGHT;
 
 //
 extern bool init();
-extern SDL_Surface* loadSurface( std::string );
 extern void close();
+extern void draw();
+extern void update();
 extern void key_down(SDL_Event* event);
+
+
+extern SDL_Surface* loadSurface( std::string );

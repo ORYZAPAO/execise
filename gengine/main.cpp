@@ -20,7 +20,6 @@ int main( int argc, char* args[] ){
     exit(0);
   }
 
-
   //Main loop flag
   bool quit = false;
   
@@ -42,11 +41,10 @@ int main( int argc, char* args[] ){
     }
     
     //Apply the current image
-    extern SDL_Surface* gCurrentSurface ;
-    SDL_BlitSurface( gCurrentSurface, NULL, gScreenSurface, NULL );
-    
+    draw();
+
     //Update the surface
-    SDL_UpdateWindowSurface( gWindow );
+    update();    
   }
   
 

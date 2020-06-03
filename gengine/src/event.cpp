@@ -46,7 +46,6 @@ bool init(){
 }
 
 
-
 //
 //
 //
@@ -70,6 +69,14 @@ void close()
 extern void my_draw();
 void draw(){
   my_draw();
+}
+
+//
+//
+//
+void update(){
+  //Update the surface
+  SDL_UpdateWindowSurface( gWindow );
 }
 
 
