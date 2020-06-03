@@ -4,9 +4,7 @@
 #include <stdio.h>
 #include <string>
 
-#include<gengine.h>
-
-extern bool loadMedia();
+#include"gengine.h"
 
 //The images that correspond to a keypress
 SDL_Surface* gKeyPressSurfaces[ KEY_PRESS_SURFACE_TOTAL ];
@@ -14,10 +12,12 @@ SDL_Surface* gKeyPressSurfaces[ KEY_PRESS_SURFACE_TOTAL ];
 //Current displayed image
 SDL_Surface* gCurrentSurface = NULL;
 
-
 extern void my_init();
 extern void  my_close();
 extern void my_key_down(SDL_Event* event);
+
+
+bool loadMedia();
 
 void my_init(){
   //Load media

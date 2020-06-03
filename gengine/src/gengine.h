@@ -15,25 +15,16 @@ enum KeyPressSurfaces
 //The window we'll be rendering to
 extern SDL_Window* gWindow;
 
-extern const int SCREEN_WIDTH;
-extern const int SCREEN_HEIGHT;
-
-extern SDL_Surface* gScreenSurface;
-
-// 
-extern const int SCREEN_WIDTH;
-extern const int SCREEN_HEIGHT;
-
-
-//The window we'll be rendering to
-extern SDL_Window* gWindow;
-
 //The surface contained by the window
 extern SDL_Surface* gScreenSurface;
+
+//
+extern const int SCREEN_WIDTH;
+extern const int SCREEN_HEIGHT;
+
 
 //
 extern bool init();
 extern SDL_Surface* loadSurface( std::string );
 extern void close();
-
 extern void key_down(SDL_Event* event);
