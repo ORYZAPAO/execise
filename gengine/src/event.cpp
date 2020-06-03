@@ -64,7 +64,18 @@ void close()
   SDL_Quit();
 }
 
+//
+//
+//
+extern void my_draw();
+void draw(){
+  my_draw();
+}
 
+
+//
+//
+//
 extern void  my_key_down(SDL_Event* event);
 void key_down(SDL_Event* event){
   my_key_down(event);
