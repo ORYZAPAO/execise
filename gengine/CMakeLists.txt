@@ -55,7 +55,7 @@ cmake_minimum_required(VERSION 2.8)
 #
 add_executable(gengine
   main.cpp
-  ./src/init.cpp
+  ./src/event.cpp
   ./src/surface.cpp
   ./src/app.cpp
   )
