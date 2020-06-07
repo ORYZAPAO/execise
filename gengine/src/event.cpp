@@ -1,6 +1,8 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+
+#include <iostream>
 #include <stdio.h>
 #include <string>
 
@@ -25,7 +27,7 @@ bool init(){
   bool success = true;
   
   //Initialize SDL
-  if( SDL_Init( SDL_INIT_VIDEO ) < 0 ) {
+  if( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER) < 0 ) {
     printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
     success = false;
   }else{
@@ -39,6 +41,21 @@ bool init(){
       gScreenSurface = SDL_GetWindowSurface( gWindow );
     }
   }
+
+
+  SDL_GameController *controller = NULL;
+  for (int i = 0; i < SDL_NumJoysticks(); ++i) {
+    if (SDL_IsGameController(i)) {
+      controller = SDL_GameControllerOpen(i);
+      if (controller) {
+        break;
+      }else{
+        fprintf(stderr, "ゲームコントローラー%dを開けなかった: %s\n", i, SDL_GetError());
+        success = false;
+      }
+    }
+  }
+  
   
   if( success ) my_init();
 
@@ -83,7 +100,85 @@ void update(){
 //
 //
 //
-extern void  my_key_down(SDL_Event* event);
+extern void my_key_down(SDL_Event* event);
 void key_down(SDL_Event* event){
+  std::cout << "Key Down" << std::endl;
   my_key_down(event);
 }
+
+
+//
+//
+//
+extern void my_mouse_motion(SDL_Event *event);
+void mouse_motion(SDL_Event *event){
+}
+
+
+//
+//
+//
+extern void my_mouse_wheel(SDL_Event *event);
+void mouse_motion_wheel(SDL_Event *event){
+}
+
+//
+//
+//
+extern void my_mouse_button_down(SDL_Event *event);
+void mouse_button_down(SDL_Event *event){
+}
+
+
+//
+//
+//
+extern void my_mouse_button_up(SDL_Event *event);
+void mouse_button_up(SDL_Event *event){
+}
+
+
+//コントローラーが動いた
+extern void my_controller_axis_motion(SDL_Event *event);
+void controller_axis_motion(SDL_Event *event){
+}
+
+//コントローラーのボタンが押された
+extern void my_controller_button_down(SDL_Event *event);
+void controller_button_down(SDL_Event *event){
+  std::cout << "Ctrl Button OFF" << std::endl;
+}
+
+//コントローラーのボタンが離された
+extern void my_controller_button_up(SDL_Event *event);
+void controller_button_up(SDL_Event *event){
+  std::cout << "Ctrl Button On" << std::endl;
+}
+
+//コントローラーが接続された
+extern void my_controller_device_added(SDL_Event *event);
+void controller_device_added(SDL_Event *event){
+  std::cout << "Connect" << std::endl;
+}
+
+//コントローラーが切断された
+extern void my_controller_device_removed(SDL_Event *event);
+void controller_device_removed(SDL_Event *event){
+  std::cout << "DisConnect" << std::endl;
+}
+
+//コントローラーのマッピングが変わった
+extern void my_controller_device_remapped(SDL_Event *event);
+void controller_device_remapped(SDL_Event *event){
+}
+
+
+
+
+
+
+
+
+
+
+

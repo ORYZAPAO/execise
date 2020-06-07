@@ -14,42 +14,8 @@ class UserApp{
 
 
 int main( int argc, char* args[] ){
-  //Start up SDL and create window
-  if( !init() ) {
-    printf( "Failed to initialize!\n" );
-    exit(0);
-  }
 
-  //Main loop flag
-  bool quit = false;
+  game();
   
-  //Event handler
-  SDL_Event e;
-
-  //While application is running
-  while( !quit ){
-    //Handle events on queue
-    while( SDL_PollEvent( &e ) != 0 ){
-      //User requests quit
-      if( e.type == SDL_QUIT ) {
-        quit = true;
-      }
-      //User presses a key
-      else if( e.type == SDL_KEYDOWN ){
-        key_down(&e);
-      }
-    }
-    
-    //Apply the current image
-    draw();
-
-    //Update the surface
-    update();    
-  }
-  
-
-  //Free resources and close SDL
-  close();
-
   return 0;
 }
