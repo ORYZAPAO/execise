@@ -13,9 +13,14 @@ class UserApp{
 };
 
 
+
+paoengine::Core core;
+
+
 int main( int argc, char* args[] ){
 
-  game();
+  
+  core.game();
   
   return 0;
 }

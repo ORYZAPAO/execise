@@ -11,7 +11,7 @@
 //
 // Constructor 
 //
-GameController::GameController():controller(NULL){
+paoengine::GameController::GameController():controller(NULL){
 
   for (int i = 0; i < SDL_NumJoysticks(); ++i) {
 

@@ -6,7 +6,7 @@
 
 #include"gengine.h"
 
-void game(){
+void paoengine::Core::game(){
 
   //Start up SDL and create window
   if( !init() ) {

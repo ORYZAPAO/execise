@@ -8,21 +8,21 @@
 
 #include"gengine.h"
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+//const int SCREEN_WIDTH = 640;
+//const int SCREEN_HEIGHT = 480;
 
 
 //The window we'll be rendering to
-SDL_Window* gWindow = NULL;
+//SDL_Window* gWindow = NULL;
 
 //The surface contained by the window
-SDL_Surface* gScreenSurface = NULL;
+//SDL_Surface* gScreenSurface = NULL;
 
 // 
 //
 //
 extern bool my_init();
-bool init(){
+bool paoengine::Core::init(){
   //Initialization flag
   bool success = true;
   
@@ -67,7 +67,7 @@ bool init(){
 //
 //
 extern void  my_close();
-void close()
+void paoengine::Core::close()
 {
   //Deallocate surfaces
   my_close();
@@ -84,14 +84,14 @@ void close()
 //
 //
 extern void my_draw();
-void draw(){
+void paoengine::Core::draw(){
   my_draw();
 }
 
 //
 //
 //
-void update(){
+void paoengine::Core::update(){
   //Update the surface
   SDL_UpdateWindowSurface( gWindow );
 }
@@ -101,7 +101,7 @@ void update(){
 //
 //
 extern void my_key_down(SDL_Event* event);
-void key_down(SDL_Event* event){
+void paoengine::Core::key_down(SDL_Event* event){
   std::cout << "Key Down" << std::endl;
   my_key_down(event);
 }
@@ -111,7 +111,7 @@ void key_down(SDL_Event* event){
 //
 //
 extern void my_mouse_motion(SDL_Event *event);
-void mouse_motion(SDL_Event *event){
+void paoengine::Core::mouse_motion(SDL_Event *event){
 }
 
 
@@ -119,14 +119,14 @@ void mouse_motion(SDL_Event *event){
 //
 //
 extern void my_mouse_wheel(SDL_Event *event);
-void mouse_motion_wheel(SDL_Event *event){
+void paoengine::Core::mouse_motion_wheel(SDL_Event *event){
 }
 
 //
 //
 //
 extern void my_mouse_button_down(SDL_Event *event);
-void mouse_button_down(SDL_Event *event){
+void paoengine::Core::mouse_button_down(SDL_Event *event){
 }
 
 
@@ -134,42 +134,42 @@ void mouse_button_down(SDL_Event *event){
 //
 //
 extern void my_mouse_button_up(SDL_Event *event);
-void mouse_button_up(SDL_Event *event){
+void paoengine::Core::mouse_button_up(SDL_Event *event){
 }
 
 
 //コントローラーが動いた
 extern void my_controller_axis_motion(SDL_Event *event);
-void controller_axis_motion(SDL_Event *event){
+void paoengine::Core::controller_axis_motion(SDL_Event *event){
 }
 
 //コントローラーのボタンが押された
 extern void my_controller_button_down(SDL_Event *event);
-void controller_button_down(SDL_Event *event){
+void paoengine::Core::controller_button_down(SDL_Event *event){
   std::cout << "Ctrl Button OFF" << std::endl;
 }
 
 //コントローラーのボタンが離された
 extern void my_controller_button_up(SDL_Event *event);
-void controller_button_up(SDL_Event *event){
+void paoengine::Core::controller_button_up(SDL_Event *event){
   std::cout << "Ctrl Button On" << std::endl;
 }
 
 //コントローラーが接続された
 extern void my_controller_device_added(SDL_Event *event);
-void controller_device_added(SDL_Event *event){
+void paoengine::Core::controller_device_added(SDL_Event *event){
   std::cout << "Connect" << std::endl;
 }
 
 //コントローラーが切断された
 extern void my_controller_device_removed(SDL_Event *event);
-void controller_device_removed(SDL_Event *event){
+void paoengine::Core::controller_device_removed(SDL_Event *event){
   std::cout << "DisConnect" << std::endl;
 }
 
 //コントローラーのマッピングが変わった
 extern void my_controller_device_remapped(SDL_Event *event);
-void controller_device_remapped(SDL_Event *event){
+void paoengine::Core::controller_device_remapped(SDL_Event *event){
 }
 
 

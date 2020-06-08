@@ -9,7 +9,7 @@
 // loadSurface
 //
 //
-SDL_Surface* loadSurface( std::string path )
+SDL_Surface* paoengine::Core::loadSurface( std::string path )
 {
   //Load image at specified path
   //SDL_Surface* loadedSurface = SDL_LoadBMP( path.c_str() );
