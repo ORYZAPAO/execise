@@ -72,6 +72,7 @@ class GameController{
   SDL_GameController *controller;
  public:
   GameController();
+  void init();
 };
 
 

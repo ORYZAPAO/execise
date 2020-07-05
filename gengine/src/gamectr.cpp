@@ -11,19 +11,26 @@
 //
 // Constructor 
 //
-paoengine::GameController::GameController():controller(NULL){
+namespace paoengine{
+  GameController::GameController():controller(NULL){
+    init();
+  }//
 
-  for (int i = 0; i < SDL_NumJoysticks(); ++i) {
-
-    if (SDL_IsGameController(i)) {
-      this->controller = SDL_GameControllerOpen(i);
-      if (controller) {
-        break;
-      }else{
-        fprintf(stderr, "ゲームコントローラー%dを開けなかった: %s\n", i, SDL_GetError());
+  void GameController::init(){
+    for (int i = 0; i < SDL_NumJoysticks(); ++i) {
+      
+      if (SDL_IsGameController(i)) {
+        this->controller = SDL_GameControllerOpen(i);
+        if (controller) {
+          break;
+        }else{
+          fprintf(stderr, "ゲームコントローラー%dを開けなかった: %s\n", i, SDL_GetError());
+        }
       }
-    }
-
-  }
+      
+    }    
+  } //
 
 }
+
+  

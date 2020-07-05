@@ -17,7 +17,7 @@ void paoengine::Core::game(){
 
   //// とりあえず、ゲームコントローラを初期化
   /// 
-  GameController cc;
+  GameController gamectr;
   
   //Main loop flag
   bool quit = false;
@@ -69,6 +69,7 @@ void paoengine::Core::game(){
         controller_button_up(&e);
         break;
       case SDL_CONTROLLERDEVICEADDED:	//コントローラーが接続された
+        gamectr.init();
         controller_device_added(&e);
         break;
       case SDL_CONTROLLERDEVICEREMOVED:	//コントローラーが切断された
