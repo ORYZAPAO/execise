@@ -146,13 +146,65 @@ void paoengine::Core::controller_axis_motion(SDL_Event *event){
 //コントローラーのボタンが押された
 extern void my_controller_button_down(SDL_Event *event);
 void paoengine::Core::controller_button_down(SDL_Event *event){
-  std::cout << "Ctrl Button OFF" << std::endl;
+
+  //if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_INVALID) ){
+  //}
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_A) ){
+    std::cout << "[A] Button On" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_B) ){
+    std::cout << "[B] Button On" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_X) ){
+    std::cout << "[X] Button On" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_Y) ){
+    std::cout << "[Y] Button On" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_BACK) ){
+    std::cout << "[Back] Button On" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_GUIDE) ){
+    std::cout << "[Guide] Button On" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_START) ){
+    std::cout << "[Start] Button On" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_LEFTSTICK) ){
+    std::cout << "LeftStick On" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_RIGHTSTICK) ){
+    std::cout << "RightStick On" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_LEFTSHOULDER) ){
+    std::cout << "Left Shoulder On" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_RIGHTSHOULDER) ){
+    std::cout << "Right Shoulder On" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_DPAD_UP) ){
+    std::cout << "DPAD Up" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_DPAD_DOWN) ){
+    std::cout << "DPAD Down" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_DPAD_LEFT) ){
+    std::cout << "DPAD Left" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_DPAD_RIGHT) ){
+    std::cout << "DPAD Right" << std::endl;
+  }
+  if( SDL_GameControllerGetButton(gamectr.controller,SDL_CONTROLLER_BUTTON_MAX) ){
+    std::cout << "MAX" << std::endl;
+  }
+    
+  //std::cout << "Ctrl Button On" << std::endl;
 }
 
 //コントローラーのボタンが離された
 extern void my_controller_button_up(SDL_Event *event);
 void paoengine::Core::controller_button_up(SDL_Event *event){
-  std::cout << "Ctrl Button On" << std::endl;
+  //std::cout << "Ctrl Button Off" << std::endl;
 }
 
 //コントローラーが接続された
@@ -171,14 +223,5 @@ void paoengine::Core::controller_device_removed(SDL_Event *event){
 extern void my_controller_device_remapped(SDL_Event *event);
 void paoengine::Core::controller_device_remapped(SDL_Event *event){
 }
-
-
-
-
-
-
-
-
-
 
 
