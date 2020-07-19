@@ -17,7 +17,7 @@ void paoengine::Core::game(){
 
   //// とりあえず、ゲームコントローラを初期化
   /// 
-  GameController gamectr;
+  gamectr.init();
   
   //Main loop flag
   bool quit = false;
