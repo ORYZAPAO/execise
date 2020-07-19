@@ -14,6 +14,14 @@ enum KeyPressSurfaces
 };
 
 
+class GameController{
+  //private:
+ public:
+  SDL_GameController *controller;
+  // public:
+  GameController();
+  void init();
+};
 
 class Core{
 public:
@@ -26,10 +34,12 @@ public:
   //The surface contained by the window
   SDL_Surface* gScreenSurface;
 
+  GameController gamectr;
 
   const int SCREEN_WIDTH;
   const int SCREEN_HEIGHT;
 
+  
 //
   bool init();
   void game();
@@ -67,13 +77,6 @@ public:
 
 
 
-class GameController{
- private:
-  SDL_GameController *controller;
- public:
-  GameController();
-  void init();
-};
 
 
 
