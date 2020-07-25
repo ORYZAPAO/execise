@@ -60,6 +60,7 @@ add_executable(gengine
   ./src/gamectr.cpp
   ./src/surface.cpp
   ./src/app.cpp
+  ./src/leap_mortion.cpp
   )
 add_definitions("-Wall -g") 
 
@@ -78,26 +79,32 @@ pkg_search_module(SDL2_image REQUIRED SDL2_image)
 
 # OpenGL、Boost、SDL2をincludeパスに設定
 include_directories(SYSTEM
- ./src
- ${Boost_INCLUDE_DIRS}
- ${SDL2_INCLUDE_DIRS}
- ${SDL2IMAGE_INCLUDE_DIRS}
+  ./src
+  ./3rdparty/LeapSDK/include
+  ${Boost_INCLUDE_DIRS}
+  ${SDL2_INCLUDE_DIRS}
+  ${SDL2IMAGE_INCLUDE_DIRS}
  )
 #include_directories(
 #  ${CMAKE_CURRENT_SOURCE_DIR}/include/)
 
-
+## 
 set(LINK_OPT "")
 if(WIN32)
   message("WIN32")
 elseif(UNIX)
   if(APPLE)
     message("APPLE")
-    set(LINK_OPT "-L /usr/local/lib")
+    set(LINK_OPT ${LINKOPT} "-L /usr/local/lib")
+    set(LINK_OPT ${LINKOPT} "./3rdparty/LeapSDK/lib/x64")
   else()
     message("UNIX/LINUX")
+    set(LINK_OPT ${LINKOPT} "-L ./3rdparty/LeapSDK/lib/x64 -lLeap")
   endif()
 endif()
+
+
+
 
 target_link_libraries(
   gengine
@@ -105,4 +112,5 @@ target_link_libraries(
   ${LINK_OPT}
   ${SDL2_LIBRARIES}
   ${SDL2IMAGE_LIBRARY} SDL2_image
+  "-pthread"
   ) 

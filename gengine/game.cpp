@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <string>
+#include <thread>
+
 
 #include"gengine.h"
 
@@ -14,7 +16,11 @@ void paoengine::Core::game(){
     exit(0);
   }
 
+  // Start Leap Mortion Thread
+  //
+  std::thread lp_thread(leap_mortion);
 
+  
   //// とりあえず、ゲームコントローラを初期化
   /// 
   gamectr.init();
