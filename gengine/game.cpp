@@ -16,9 +16,9 @@ void paoengine::Core::game(){
     exit(0);
   }
 
-  // Start Leap Mortion Thread
+  // Start Leap Motion Thread
   //
-  std::thread lp_thread(leap_mortion);
+  std::thread lp_thread(leap_motion);
 
   
   //// とりあえず、ゲームコントローラを初期化

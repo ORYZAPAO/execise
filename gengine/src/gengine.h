@@ -75,7 +75,7 @@ public:
 //extern const int SCREEN_WIDTH;
 //extern const int SCREEN_HEIGHT;
 
-  extern void leap_mortion();
+  extern void leap_motion();
 
 
 

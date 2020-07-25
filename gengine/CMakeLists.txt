@@ -60,7 +60,7 @@ add_executable(gengine
   ./src/gamectr.cpp
   ./src/surface.cpp
   ./src/app.cpp
-  ./src/leap_mortion.cpp
+  ./src/leap_motion.cpp
   )
 add_definitions("-Wall -g") 
 
