@@ -12,14 +12,9 @@ class UserApp{
   //  virtual void 
 };
 
-
-
 paoengine::Core core;
 
-
 int main( int argc, char* args[] ){
-
-  
   core.game();
   
   return 0;
