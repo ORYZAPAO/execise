@@ -8,33 +8,20 @@
 
 #include <iostream>
 #include <cstring>
-#include "Leap.h"
 
+//#include "Leap.h"
+#include "leap_motion.h"
 
 namespace paoengine{
   
 using namespace Leap;
 
-class SampleListener : public Listener {
-  public:
-    virtual void onInit(const Controller&);
-    virtual void onConnect(const Controller&);
-    virtual void onDisconnect(const Controller&);
-    virtual void onExit(const Controller&);
-    virtual void onFrame(const Controller&);
-    virtual void onFocusGained(const Controller&);
-    virtual void onFocusLost(const Controller&);
-    virtual void onDeviceChange(const Controller&);
-    virtual void onServiceConnect(const Controller&);
-    virtual void onServiceDisconnect(const Controller&);
+Frame *SampleListener::getLeapFrame(){
+  std::lock_guard<std::mutex> lock(this->mtx_leap_frame);
+  return &leap_frame;
+}
 
-  private:
-};
-
-const std::string fingerNames[] = {"Thumb", "Index", "Middle", "Ring", "Pinky"};
-const std::string boneNames[] = {"Metacarpal", "Proximal", "Middle", "Distal"};
-const std::string stateNames[] = {"STATE_INVALID", "STATE_START", "STATE_UPDATE", "STATE_END"};
-
+  
 void SampleListener::onInit(const Controller& controller) {
   std::cout << "Initialized" << std::endl;
 }
@@ -57,10 +44,15 @@ void SampleListener::onExit(const Controller& controller) {
 }
 
 void SampleListener::onFrame(const Controller& controller) {
-  const Frame frame = controller.frame();
-  /****
+  //const Frame frame = controller.frame();
+  /****/
   // Get the most recent frame and report some basic information
   const Frame frame = controller.frame();
+  {
+    std::lock_guard<std::mutex> lock(this->mtx_leap_frame);
+    this->leap_frame = frame;
+  }
+
   std::cout << "Frame id: " << frame.id()
             << ", timestamp: " << frame.timestamp()
             << ", hands: " << frame.hands().count()
@@ -110,7 +102,7 @@ void SampleListener::onFrame(const Controller& controller) {
       }
     }
   }
-  ****/
+  /****/
 
   // Get tools
   const ToolList tools = frame.tools();
@@ -190,7 +182,7 @@ void SampleListener::onFrame(const Controller& controller) {
   }
 
   if (!frame.hands().isEmpty() || !gestures.isEmpty()) {
-    std::cout << std::endl;
+    //std::cout << std::endl;
   }
 
 }
@@ -232,7 +224,7 @@ void leap_motion(){
   controller.addListener(listener);
 
   //if (argc > 1 && strcmp(argv[1], "--bg") == 0)
-    controller.setPolicy(Leap::Controller::POLICY_BACKGROUND_FRAMES);
+  controller.setPolicy(Leap::Controller::POLICY_BACKGROUND_FRAMES);
 
   // Keep this process running until Enter is pressed
   std::cout << "Press Enter to quit..." << std::endl;

@@ -1,7 +1,9 @@
 #pragma once
 
-namespace paoengine{
+#include "leap_motion.h"
 
+namespace paoengine{
+  
 //Key press surfaces constants
 enum KeyPressSurfaces
 {
