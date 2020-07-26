@@ -54,8 +54,8 @@ cmake_minimum_required(VERSION 2.8)
 #        WORKING_DIRECTORY lex)
 #
 add_executable(gengine
-  main.cpp
-  ./game.cpp
+  ./src/main.cpp
+  ./src/game.cpp
   ./src/event.cpp
   ./src/gamectr.cpp
   ./src/surface.cpp
