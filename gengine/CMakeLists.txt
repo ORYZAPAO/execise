@@ -88,6 +88,15 @@ include_directories(SYSTEM
 #include_directories(
 #  ${CMAKE_CURRENT_SOURCE_DIR}/include/)
 
+
+## 
+if(APPLE)
+  target_link_options(
+    gengine 
+    PRIVATE "./3rdparty/LeapSDK/lib/libLeap.dylib"
+  )
+endif()
+
 ## 
 set(LINK_OPT "")
 if(WIN32)
@@ -96,15 +105,11 @@ elseif(UNIX)
   if(APPLE)
     message("APPLE")
     set(LINK_OPT ${LINKOPT} "-L /usr/local/lib")
-    set(LINK_OPT ${LINKOPT} "./3rdparty/LeapSDK/lib/x64")
   else()
     message("UNIX/LINUX")
     set(LINK_OPT ${LINKOPT} "-L ./3rdparty/LeapSDK/lib/x64 -lLeap")
   endif()
 endif()
-
-
-
 
 target_link_libraries(
   gengine
