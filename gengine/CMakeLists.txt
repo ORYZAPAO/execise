@@ -59,6 +59,7 @@ add_executable(gengine
   ./src/event.cpp
   ./src/gamectr.cpp
   ./src/surface.cpp
+  ./src/sprite.cpp
   ./src/app.cpp
   ./src/leap_motion.cpp
   )
