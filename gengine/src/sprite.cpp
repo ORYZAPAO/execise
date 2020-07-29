@@ -29,7 +29,7 @@ namespace paoengine{
       SDL_FreeSurface( spriteSurface );
     }
 
-    // Load Image Tecture
+    // Load Image Texture
     bool load_img(const char *img_path){
       spriteSurface = IMG_Load(img_path);
       if( spriteSurface == NULL ) return false;
