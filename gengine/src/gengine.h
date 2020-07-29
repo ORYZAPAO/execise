@@ -15,48 +15,8 @@ enum KeyPressSurfaces
  KEY_PRESS_SURFACE_TOTAL
 };
 
-struct Vect2{
-  int x;
-  int y;
-  Vect2():x(0),y(0){}
-
-  Vect2(const Vect2 &my) :           // Copy Constructor
-    x(my.x), y(my.y){} 
-  Vect2& operator=(const Vect2 &my){ // Copy Constructor
-    x = my.x; y = my.y;
-    return(*this);
-  }   
-};
-
-struct Vect3{
-  int x;
-  int y;
-  int z;
-  Vect3():x(0),y(0),z(0){}
-
-  Vect3(const Vect3 &my) :           // Copy Constructor
-    x(my.x), y(my.y), z(my.z){} 
-  Vect3& operator=(const Vect3 &my){ // Copy Constructor
-    x=my.x; y=my.y; z=my.z;
-    return(*this);
-  }   
-};
-
-
-struct Rect{
-  int x;
-  int y;
-  int w;
-  int h;
-  Rect():x(0),y(0),w(0),h(0){}
-
-  Rect(const Rect &my) :           // Copy Constructor
-    x(my.x), y(my.y), w(my.w), h(my.h){} 
-  Rect& operator=(const Rect &my){ // Copy Constructor
-    x=my.x; y=my.y; w=my.w; h=my.h;
-    return(*this);
-  }   
-};
+#include "inc/Vect.h"
+#include "inc/Rect.h"
 
 
 class GameController{
