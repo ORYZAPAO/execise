@@ -1,0 +1,5 @@
+#!/bin/bash 
+make -j
+echo "Update ./gengine for MacOS (LeapMotion Lib)"
+install_name_tool -change @loader_path/libLeap.dylib ./3rdparty/LeapSDK/lib/libLeap.dylib ./gengine
+echo "..Done"
