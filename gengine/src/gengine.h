@@ -3,12 +3,11 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-
 #include "inc/leap_motion.h"
 
 #include "inc/Vect.h"
 #include "inc/Rect.h"
-#include "inc/sprite.h"
+#include "inc/Sprite.h"
 
 
 namespace paoengine{
