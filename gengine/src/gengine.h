@@ -1,6 +1,15 @@
 #pragma once
 
-#include "leap_motion.h"
+#include <SDL.h>
+#include <SDL_image.h>
+
+
+#include "inc/leap_motion.h"
+
+#include "inc/Vect.h"
+#include "inc/Rect.h"
+#include "inc/sprite.h"
+
 
 namespace paoengine{
   
@@ -14,9 +23,6 @@ enum KeyPressSurfaces
  KEY_PRESS_SURFACE_RIGHT,
  KEY_PRESS_SURFACE_TOTAL
 };
-
-#include "inc/Vect.h"
-#include "inc/Rect.h"
 
 
 class GameController{

@@ -1,7 +1,6 @@
 #pragma once
 
-//namespace paoengine{
-
+namespace paoengine{
 
 struct Vect2{
   int x;
@@ -30,4 +29,4 @@ struct Vect3{
   }   
 };
 
-//} //namespace paoengine{
+} //namespace paoengine{
