@@ -10,7 +10,7 @@
 #include <cstring>
 
 //#include "Leap.h"
-#include "leap_motion.h"
+#include "inc/leap_motion.h"
 
 namespace paoengine{
   
