@@ -10,16 +10,13 @@
 #include <cstring>
 
 //#include "Leap.h"
-#include "inc/leap_motion.h"
+//#include "inc/leap_motion.h"
+#include "gengine.h"
+
 
 namespace paoengine{
   
 using namespace Leap;
-
-Frame *SampleListener::getLeapFrame(){
-  std::lock_guard<std::mutex> lock(this->mtx_leap_frame);
-  return &leap_frame;
-}
 
   
 void SampleListener::onInit(const Controller& controller) {
@@ -49,8 +46,7 @@ void SampleListener::onFrame(const Controller& controller) {
   // Get the most recent frame and report some basic information
   const Frame frame = controller.frame();
   {
-    std::lock_guard<std::mutex> lock(this->mtx_leap_frame);
-    this->leap_frame = frame;
+    this->pCore->set_leap_frame(frame);
   }
 
   std::cout << "Frame id: " << frame.id()
@@ -214,12 +210,17 @@ void SampleListener::onServiceDisconnect(const Controller& controller) {
 }
 
 
+
+//--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 //int main(int argc, char** argv) {
 void leap_motion(){
 // Create a sample listener and controller
   SampleListener listener;
   Controller controller;
 
+  listener.pCore = &core;
+  
   // Have the sample listener receive events from the controller
   controller.addListener(listener);
 

@@ -6,6 +6,7 @@ struct Vect2{
   int x;
   int y;
   Vect2():x(0),y(0){}
+  Vect2(int x_, int y_):x(x_),y(y_){}
 
   Vect2(const Vect2 &my) :           // Copy Constructor
     x(my.x), y(my.y){} 

@@ -17,8 +17,7 @@ void paoengine::Core::game(){
   std::thread lp_thread(leap_motion);
 
   
-  //// とりあえず、ゲームコントローラを初期化
-  /// 
+  // Initialize Game Controller
   gamectr.init();
   
   //Main loop flag

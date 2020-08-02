@@ -14,9 +14,12 @@ namespace paoengine{
   class Sprite{
   private:
     SDL_Surface *spriteSurface;
-    Core        *pCore;    
-    Vect2        point;
+    SDL_Rect     region; 
+    SDL_Rect     point; // Draw Point
 
+    Core        *pCore;        
+
+    
   public:
     // Constructor
     Sprite() = delete;
@@ -41,20 +44,42 @@ namespace paoengine{
       return true;
     }
 
-    // Sprite Position
-    Vect2 getPoint(){ return point; }
-    void  setPoint(int x, int y){
-      point.x=x; point.y=y;
+    //
+    void  setRegion(int x, int y, int w, int h){
+      region.x=x; region.y=y;   region.w=w;        region.h=h;
+      /*point.x=0; point.y=0;*/ point.w =region.w; point.h=region.h;  
     }
-    void setPoint(Vect2 vec){
-      point = vec;
+    void  setRegion(Rect &rect){
+      setRegion(rect.x, rect.y, rect.w, rect.h);
+    }
+    Rect  getRegion(){
+      Rect rect = {region.x, region.y, region.w, region.h };
+      return rect;
     }
     
-    void draw(Rect src){
-      SDL_Rect sdl_src={src.x, src.y, src.w, src.h};
-      //SDL_Rect sdl_dst={dst.x, dst.y, dst.w, dst.h};
-      
-      SDL_BlitSurface( spriteSurface, &sdl_src, pCore->gScreenSurface, NULL );        
+    // Move
+    void addx(int x){ point.x += x; }
+    void addy(int y){ point.y += y; }
+
+    // Sprite Position
+    Vect2 getPoint(){
+      Vect2 vect = {point.x, point.y};
+      return vect;
+    }
+    void  setPoint(int x, int y){
+      point.x=x; point.y=y; point.w=region.w; point.h= region.h;
+    }
+    void  setPoint(Vect2 &vec){
+      point.x=vec.x; point.y=vec.y; point.w=region.w; point.h= region.h;
+    }
+
+    //
+    void draw(){
+      SDL_BlitSurface( spriteSurface, &region, pCore->gScreenSurface, &point);        
+    }
+    void draw(Vect2 &vect){
+      point.x=vect.x; point.y=point.y;
+      SDL_BlitSurface( spriteSurface, &region, pCore->gScreenSurface, &point);        
     }
     
     // [Debug] ostream 

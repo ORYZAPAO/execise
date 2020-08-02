@@ -1,12 +1,10 @@
 #pragma once
+#include <string>
+#include <mutex>
 
 #include <SDL.h>
 #include <SDL_image.h>
-
-#include "inc/leap_motion.h"
-
-#include "inc/Vect.h"
-#include "inc/Rect.h"
+#include <Leap.h>
 
 namespace paoengine{
   
@@ -31,6 +29,8 @@ class GameController{
   void init();
 };
 
+
+  
 class Core{
 public:
   Core():gWindow(NULL), gScreenSurface(NULL),
@@ -47,7 +47,6 @@ public:
   const int SCREEN_WIDTH;
   const int SCREEN_HEIGHT;
 
-  
 //
   bool init();
   void game();
@@ -71,6 +70,18 @@ public:
   void controller_device_remapped(SDL_Event *event);
 
   SDL_Surface* loadSurface( std::string ); 
+
+
+  Leap::Frame   leap_frame;
+  std::mutex mtx_leap_frame;
+  void set_leap_frame(const Leap::Frame &frame){
+    std::lock_guard<std::mutex> lock(this->mtx_leap_frame);
+    leap_frame = frame;
+  }
+  Leap::Frame &get_leap_frame(){
+    std::lock_guard<std::mutex> lock(this->mtx_leap_frame);
+    return leap_frame;
+  }
 };
 
 //The window we'll be rendering to
@@ -87,8 +98,11 @@ public:
 
 }; //namespace paoengine{
 
-
-
 extern paoengine::Core core;
+
+#include "inc/Vect.h"
+#include "inc/Rect.h"
+#include "inc/leap_motion.h"
+
 
 #include "inc/Sprite.h"

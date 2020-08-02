@@ -8,7 +8,7 @@
 \******************************************************************************/
 
 #include <mutex>
-#include "Leap.h"
+#include <Leap.h>
 
 namespace paoengine{
   
@@ -27,11 +27,9 @@ class SampleListener : public Listener {
     virtual void onServiceConnect(const Controller&);
     virtual void onServiceDisconnect(const Controller&);
 
-  Frame *getLeapFrame();
+    Core   *pCore;
 
 private:
-  std::mutex mtx_leap_frame;
-  Frame   leap_frame;
 };
 
 const std::string fingerNames[] = {"Thumb", "Index", "Middle", "Ring", "Pinky"};

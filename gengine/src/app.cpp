@@ -17,10 +17,17 @@ extern void my_key_down(SDL_Event* event);
 
 extern bool loadMedia();
 
+paoengine::Sprite *p_mych;;
+
+
 //
 //
 //
 void my_init(){
+  p_mych = new paoengine::Sprite(&core, "./img/chara.jpg");
+  p_mych->setRegion(48,48,48,48);
+  p_mych->setPoint(0,30);
+  
   //Load media
   if( !loadMedia() ){
     printf( "Failed to load media!\n" );
@@ -49,6 +56,9 @@ void my_close()
 void my_draw(){
   //Apply the current image
   SDL_BlitSurface( gCurrentSurface, NULL, core.gScreenSurface, NULL );
+
+  p_mych->draw();
+  core.get_leap_frame();
 }
 
 //
