@@ -7,8 +7,6 @@
 
 #include "inc/Vect.h"
 #include "inc/Rect.h"
-#include "inc/Sprite.h"
-
 
 namespace paoengine{
   
@@ -87,13 +85,10 @@ public:
 
   extern void leap_motion();
 
-
-
-
-
 }; //namespace paoengine{
 
 
 
 extern paoengine::Core core;
 
+#include "inc/Sprite.h"

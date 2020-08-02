@@ -9,19 +9,23 @@
 
 namespace paoengine{
 
+  class Core;
+  
   class Sprite{
   private:
     SDL_Surface *spriteSurface;
+    Core        *pCore;    
     Vect2        point;
 
   public:
     // Constructor
-    Sprite(){
+    Sprite() = delete;
+    Sprite(Core *p): pCore(p){      
     }
-    Sprite(const std::string &img_path){
+    Sprite(Core *p, const std::string &img_path): pCore(p){
       load_img( img_path.c_str() );
     }
-    Sprite(const char* img_path_cstr){
+    Sprite(Core *p, const char* img_path_cstr): pCore(p){
       load_img( img_path_cstr );
     }
 
@@ -46,11 +50,11 @@ namespace paoengine{
       point = vec;
     }
     
-    void draw(Rect src, Rect dst){
+    void draw(Rect src){
       SDL_Rect sdl_src={src.x, src.y, src.w, src.h};
-      SDL_Rect sdl_dst={dst.x, dst.y, dst.w, dst.h};
+      //SDL_Rect sdl_dst={dst.x, dst.y, dst.w, dst.h};
       
-      //SDL_BlitSurface( gCurrentSurface, NULL, core.gScreenSurface, NULL );        
+      SDL_BlitSurface( spriteSurface, &sdl_src, pCore->gScreenSurface, NULL );        
     }
     
     // [Debug] ostream 
