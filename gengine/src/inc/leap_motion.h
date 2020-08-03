@@ -13,8 +13,8 @@
 namespace paoengine{
   
 using namespace Leap;
-
-class SampleListener : public Listener {
+ 
+  class SampleListener : public Listener {
   public:
     virtual void onInit(const Controller&);
     virtual void onConnect(const Controller&);
@@ -26,14 +26,17 @@ class SampleListener : public Listener {
     virtual void onDeviceChange(const Controller&);
     virtual void onServiceConnect(const Controller&);
     virtual void onServiceDisconnect(const Controller&);
+    
+    //Core   *pCore;
+    
+  private:
+  };
 
-    Core   *pCore;
 
-private:
-};
+  const std::string fingerNames[] = {"Thumb", "Index", "Middle", "Ring", "Pinky"};
+  const std::string boneNames[]   = {"Metacarpal", "Proximal", "Middle", "Distal"};
+  const std::string stateNames[]  = {"STATE_INVALID", "STATE_START", "STATE_UPDATE", "STATE_END"};
 
-const std::string fingerNames[] = {"Thumb", "Index", "Middle", "Ring", "Pinky"};
-const std::string boneNames[]   = {"Metacarpal", "Proximal", "Middle", "Distal"};
-const std::string stateNames[]  = {"STATE_INVALID", "STATE_START", "STATE_UPDATE", "STATE_END"};
-  
+  extern void leapmotion_start();
+
 } //namespace paoengine{  

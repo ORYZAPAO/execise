@@ -6,6 +6,10 @@
 #include <SDL_image.h>
 #include <Leap.h>
 
+#include "inc/Vect.h"
+#include "inc/Rect.h"
+#include "inc/leap_motion.h"
+
 namespace paoengine{
   
 //Key press surfaces constants
@@ -37,13 +41,14 @@ public:
          SCREEN_WIDTH (640), SCREEN_HEIGHT(480){}
   
   //The window we'll be rendering to
-  SDL_Window* gWindow;
+  SDL_Window     *gWindow;
 
   //The surface contained by the window
-  SDL_Surface* gScreenSurface;
+  SDL_Surface    *gScreenSurface;
 
-  GameController gamectr;
-
+  GameController  gamectr;
+  //PLeapMotion     leapmotion;
+  
   const int SCREEN_WIDTH;
   const int SCREEN_HEIGHT;
 
@@ -71,7 +76,6 @@ public:
 
   SDL_Surface* loadSurface( std::string ); 
 
-
   Leap::Frame   leap_frame;
   std::mutex mtx_leap_frame;
   void set_leap_frame(const Leap::Frame &frame){
@@ -94,15 +98,11 @@ public:
 //extern const int SCREEN_WIDTH;
 //extern const int SCREEN_HEIGHT;
 
-  extern void leap_motion();
-
 }; //namespace paoengine{
 
 extern paoengine::Core core;
 
-#include "inc/Vect.h"
-#include "inc/Rect.h"
-#include "inc/leap_motion.h"
+
 
 
 #include "inc/Sprite.h"
