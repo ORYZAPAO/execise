@@ -60,6 +60,7 @@ add_executable(gengine
   ./src/gamectr.cpp
   ./src/surface.cpp
   ./src/sprite.cpp
+  ./src/timer.cpp
   ./src/app.cpp
   ./src/leap_motion.cpp
   )
