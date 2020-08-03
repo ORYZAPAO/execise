@@ -4,6 +4,7 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_timer.h>
 #include <Leap.h>
 
 #include "inc/Vect.h"
@@ -46,8 +47,8 @@ public:
   //The surface contained by the window
   SDL_Surface    *gScreenSurface;
 
-  GameController  gamectr;
-  //PLeapMotion     leapmotion;
+  GameController       gamectr;
+  LeapMotionController leapmotionctr;
   
   const int SCREEN_WIDTH;
   const int SCREEN_HEIGHT;

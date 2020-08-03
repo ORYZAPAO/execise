@@ -14,7 +14,7 @@ void paoengine::Core::game(){
 
   // Start Leap Motion Thread
   //
-  std::thread lp_thread(leapmotion_start);
+  std::thread lp_thread(leapmotionctr.start);
 
   
   // Initialize Game Controller

@@ -37,7 +37,11 @@ using namespace Leap;
   const std::string boneNames[]   = {"Metacarpal", "Proximal", "Middle", "Distal"};
   const std::string stateNames[]  = {"STATE_INVALID", "STATE_START", "STATE_UPDATE", "STATE_END"};
 
-  extern void leapmotion_start();
+  class LeapMotionController{
+  public:
+    LeapMotionController(){}
+    static void start();
+  };
 
- 
+  
 } //namespace paoengine{  

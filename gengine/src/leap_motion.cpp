@@ -213,7 +213,7 @@ void LeapMotionListener::onServiceDisconnect(const Controller& controller) {
 
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-void leapmotion_start(){
+void LeapMotionController::start(){
   // Create a sample listener and controller
   LeapMotionListener listener;
   Controller     controller;
