@@ -14,7 +14,7 @@ namespace paoengine{
   
 using namespace Leap;
  
-  class SampleListener : public Listener {
+  class LeapMotionListener : public Listener {
   public:
     virtual void onInit(const Controller&);
     virtual void onConnect(const Controller&);
@@ -39,4 +39,5 @@ using namespace Leap;
 
   extern void leapmotion_start();
 
+ 
 } //namespace paoengine{  

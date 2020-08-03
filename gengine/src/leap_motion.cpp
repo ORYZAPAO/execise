@@ -19,11 +19,11 @@ namespace paoengine{
 using namespace Leap;
 
   
-void SampleListener::onInit(const Controller& controller) {
+void LeapMotionListener::onInit(const Controller& controller) {
   std::cout << "Initialized" << std::endl;
 }
 
-void SampleListener::onConnect(const Controller& controller) {
+void LeapMotionListener::onConnect(const Controller& controller) {
   std::cout << "Connected" << std::endl;
   controller.enableGesture(Gesture::TYPE_CIRCLE);
   controller.enableGesture(Gesture::TYPE_KEY_TAP);
@@ -31,16 +31,16 @@ void SampleListener::onConnect(const Controller& controller) {
   controller.enableGesture(Gesture::TYPE_SWIPE);
 }
 
-void SampleListener::onDisconnect(const Controller& controller) {
+void LeapMotionListener::onDisconnect(const Controller& controller) {
   // Note: not dispatched when running in a debugger.
   std::cout << "Disconnected" << std::endl;
 }
 
-void SampleListener::onExit(const Controller& controller) {
+void LeapMotionListener::onExit(const Controller& controller) {
   std::cout << "Exited" << std::endl;
 }
 
-void SampleListener::onFrame(const Controller& controller) {
+void LeapMotionListener::onFrame(const Controller& controller) {
   //const Frame frame = controller.frame();
   /****/
   // Get the most recent frame and report some basic information
@@ -183,15 +183,15 @@ void SampleListener::onFrame(const Controller& controller) {
 
 }
 
-void SampleListener::onFocusGained(const Controller& controller) {
+void LeapMotionListener::onFocusGained(const Controller& controller) {
   std::cout << "Focus Gained" << std::endl;
 }
 
-void SampleListener::onFocusLost(const Controller& controller) {
+void LeapMotionListener::onFocusLost(const Controller& controller) {
   std::cout << "Focus Lost" << std::endl;
 }
 
-void SampleListener::onDeviceChange(const Controller& controller) {
+void LeapMotionListener::onDeviceChange(const Controller& controller) {
   std::cout << "Device Changed" << std::endl;
   const DeviceList devices = controller.devices();
 
@@ -201,11 +201,11 @@ void SampleListener::onDeviceChange(const Controller& controller) {
   }
 }
 
-void SampleListener::onServiceConnect(const Controller& controller) {
+void LeapMotionListener::onServiceConnect(const Controller& controller) {
   std::cout << "Service Connected" << std::endl;
 }
 
-void SampleListener::onServiceDisconnect(const Controller& controller) {
+void LeapMotionListener::onServiceDisconnect(const Controller& controller) {
   std::cout << "Service Disconnected" << std::endl;
 }
 
@@ -215,7 +215,7 @@ void SampleListener::onServiceDisconnect(const Controller& controller) {
 //--------------------------------------------------------------------------------
 void leapmotion_start(){
   // Create a sample listener and controller
-  SampleListener listener;
+  LeapMotionListener listener;
   Controller     controller;
 
   // Have the sample listener receive events from the controller
