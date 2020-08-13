@@ -4,23 +4,23 @@
 #include <sstream>
 #include <boost/format.hpp>
 
-#include "inc/Vect.h"
-#include "inc/Rect.h"
+//#include "inc/Vect.h"
+//#include "inc/Rect.h"
 
 namespace paoengine{
 
-  class Core;
+  //class Core;
   
   class SpriteTable{
   private:
     SDL_Surface *spriteSurface;
+    Core       *pCore;        
     Size        size;     // Sprite XY Size
     Size        tbl_size; // Sprite Table Size
     Vect2       select;   // Select Sprite
     
     Vect2       pos;      // Draw Sprite Position
     
-    Core       *pCore;        
 
     
   public:
