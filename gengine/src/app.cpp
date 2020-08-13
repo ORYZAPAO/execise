@@ -17,16 +17,16 @@ extern void my_key_down(SDL_Event* event);
 
 extern bool loadMedia();
 
-paoengine::Sprite *p_mych;;
+paoengine::SpriteTable *p_mych;;
 
 
 //
 //
 //
 void my_init(){
-  p_mych = new paoengine::Sprite(&core, "./img/chara.jpg");
-  p_mych->setRegion(48,48,48,48);
-  p_mych->setPoint(0,30);
+  p_mych = new paoengine::SpriteTable(&core, "./img/chara.png");
+  //p_mych->setRegion(48,48,48,48);
+  //p_mych->setPoint(0,30);
   
   //Load media
   if( !loadMedia() ){
@@ -57,7 +57,7 @@ void my_draw(){
   //Apply the current image
   SDL_BlitSurface( gCurrentSurface, NULL, core.gScreenSurface, NULL );
 
-  p_mych->draw();
+  p_mych->draw(paoengine::Vect2(0,1), paoengine::Vect2(100,100));
   core.get_leap_frame();
 }
 

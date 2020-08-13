@@ -19,4 +19,21 @@ namespace paoengine{
     }   
   };
 
+
+  struct Size{
+    int width;
+    int height;
+
+    Size():width(0),height(0){}
+    Size(int width_, int height_):width(width_),height(height_){}    
+    Size(const Size &my) :           // Copheight Constructor
+      width(my.width), height(my.height){} 
+    Size& operator=(const Size &my){ // Copy Constructor
+      width = my.width; height = my.height;
+      return(*this);
+    }   
+  };
+
+
+
 } //namespace paoengine{
