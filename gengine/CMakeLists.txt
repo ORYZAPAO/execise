@@ -64,7 +64,7 @@ add_executable(gengine
   ./src/app.cpp
   ./src/leap_motion.cpp
   )
-add_definitions("-Wall -g") 
+add_definitions("-Wall -g -std=c++14") 
 
 
 # OpenGL、Boost、SDL2ライブラリを検索
