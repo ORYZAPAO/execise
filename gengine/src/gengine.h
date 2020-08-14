@@ -9,6 +9,7 @@
 
 #include "inc/Vect.h"
 #include "inc/Rect.h"
+#include "inc/Timer.h"
 #include "inc/leap_motion.h"
 
 namespace paoengine{
