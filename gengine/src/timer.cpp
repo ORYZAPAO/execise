@@ -1,3 +1,4 @@
+/***************
 #include"gengine.h"
 
 namespace paoengine{ 
@@ -162,3 +163,4 @@ paoengine::Timer::~Timer(){
 void paoengine::Timer::init(){
   id = SDL_AddTimer(100, paoengine::Timer::callbackfunc, NULL);
 }
+***********/
