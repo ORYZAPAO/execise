@@ -28,10 +28,14 @@ void get_vdp_port(){
 
 // set_mode 5
 //
-void set_mode(int mode){
+void set_vdpmode(int mode){
 #asm
+  ld    hl, 2
+  add   hl, sp
+  ld    d,(hl)
+
   ; SCREEN5(GRAPHIC4) へ切り替える
-  ld a, 5
+  ld    a, d
   call 0x005f
 #endasm
 }
@@ -162,12 +166,8 @@ int main(){
   //printf("%d=¥n",inp(p1));
   //return;
 
-  #asm
-  ; SCREEN5(GRAPHIC4) へ切り替える
-  ld a, 5
-  call 0x005f
-  #endasm
-     
+  // Screen5 
+  set_vdpmode(5);   
  
   // Bank
   select_vram();          
