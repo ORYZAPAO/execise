@@ -230,10 +230,33 @@ int main(){
   preset_sprite_color(0, color);
   
   preset_sprite_attr_addr(0x7600);
-  draw_sprite(0, 0, 160, 160 );
-  draw_sprite(1, 1, 160-2, 160-2);
+  int px=160, py=160;
+  draw_sprite(0, 0, px, py );
+  //draw_sprite(1, 1, px-2, py-2);
   
-  while (!get_trigger(0)) ;
+  int x=0,y=0;
+  int d;
+  while (!get_trigger(0)) {
+    d = get_stick(0);
+    switch (d) {
+    case 0: x = 0;  y = 0;   break;
+    case 1: x = 0;  y = -1; break;
+    case 2: x = 1;  y = -1; break;
+    case 3: x = 1;  y = 0;   break;
+    case 4: x = 1;  y = 1;  break;
+    case 5: x = 0;  y = 1;  break;
+    case 6: x = -1; y = 1;  break;
+    case 7: x = -1; y = 0;   break;
+    case 8: x = -1; y = -1; break;
+    default : x=0; y=0;       break;
+    }
+
+    px += x;
+    py += y;
+    draw_sprite(1, 1, px, py );
+    x=0; y=0;
+    
+  }
 
     //  set_vdp_reg(10,0xFF);
 
