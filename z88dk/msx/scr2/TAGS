@@ -1,0 +1,39 @@
+
+mymsx1.c,1434
+unsigned char p0; // I/O Address ...VDP Port #0p013,288
+unsigned char p1; //             ...VDP Port #1p114,336
+unsigned char p2; //             ...VDP Port #2p215,384
+unsigned char p3; //             ...VDP Port #3p316,432
+void get_vdp_port(){get_vdp_port20,487
+#define  MAP_WIDTH MAP_WIDTH29,739
+#define  MAP_HEIGHT MAP_HEIGHT30,761
+void set_vdpmode(int mode){set_vdpmode35,803
+void select_vram(){select_vram51,1018
+void preset_vram_addr(unsigned int vaddr){preset_vram_addr60,1162
+unsigned int SPRITE_PTRN_NAME_VADDR = 0x0000;SPRITE_PTRN_NAME_VADDR72,1608
+void preset_pat_name_addr(unsigned int vpat_name_addr){preset_pat_name_addr76,1699
+unsigned int SPRITE_COLOR_VADDR  = 0x7400;SPRITE_COLOR_VADDR88,2094
+unsigned int SPRITE_ATTR_VADDR   = 0x1B00;SPRITE_ATTR_VADDR89,2137
+unsigned int SPRITE_PATGEN_VADDR = 0x0000;SPRITE_PATGEN_VADDR90,2180
+void preset_sprite_patgen_addr(unsigned int vspr_ptrn_addr){preset_sprite_patgen_addr94,2261
+void create_sprite8x8(int id, unsigned char *pat){create_sprite8x8104,2473
+void preset_sprite_attr_addr(unsigned int vspr_attr_addr){preset_sprite_attr_addr112,2652
+void preset_sprite_color(unsigned char id, unsigned char *table){preset_sprite_color125,2976
+void draw_sprite(unsigned char spr,  unsigned char id, unsigned char x, unsigned char y){draw_sprite134,3172
+void draw1(unsigned int line, unsigned int d){draw1145,3517
+int main(){main152,3618
+
+sc2.rom,0
+
+sc2_DATA.bin,0
+
+zcc_opt.def,0
+
+TAGS,0
+
+Makefile,82
+TARGET=sc2.romTARGET1,0
+$(TARGET) : mymsx1.c$(TARGET)3,16
+clean :clean9,221
+
+sc2_BSS.bin,0
