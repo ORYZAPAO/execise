@@ -227,9 +227,12 @@ int main(){
   int px=160, py=160;
   int x=0,y=0;
   int d;
+  int ct=0;
   while (!get_trigger(0)) {
-    vwrite(map, 0x1800, (MAP_WIDTH * MAP_HEIGHT));    
-    //vwrite(map, 0, (MAP_WIDTH * MAP_HEIGHT));    
+    if( (ct++ % 50) == 0 ){ 
+      vwrite(map, 0x1800, (MAP_WIDTH * MAP_HEIGHT));    
+      //vwrite(map, 0, (MAP_WIDTH * MAP_HEIGHT));
+    }
     
     d = get_stick(0);
     switch (d) {
