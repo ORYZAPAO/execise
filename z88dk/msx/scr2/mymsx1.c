@@ -26,7 +26,7 @@ void get_vdp_port(){
 }
 
 
-#define  MAP_WIDTH 32
+#define  MAP_WIDTH  32
 #define  MAP_HEIGHT 24
 
 
@@ -64,6 +64,27 @@ void preset_vram_addr(unsigned int vaddr){
   outp(p1,(0x80 | 14) ); // R#14
   outp(p1,        (vaddr & 0xFF)) ;         // bit 7-0
   outp(p1,(0x40 | ((vaddr >> 8) & 0x3F)) ); // bit 13-8 
+}
+
+//============================================================
+//== Keyboard
+//== 
+//== Return Code
+//==   ScanCode 8bit ... Push   key: bit0
+//==                 ... Relase Key: bit1
+//============================================================
+int  get_keyboard(int keymatrix_line){
+#asm
+  ld    hl, 2
+  add   hl, sp
+  ld    a,(hl)
+
+  ; キーマトリクスの指定行の読み出し
+  call  0x0141
+  ld    h,0
+  ld    l,a
+  push  hl 
+#endasm
 }
 
 //============================================================
@@ -153,7 +174,7 @@ int main(){
   get_vdp_port();  
 
 #asm
-    di;
+  di;
 #endasm
 
   // Screen2
@@ -163,9 +184,9 @@ int main(){
   //set_color(15, 1, 1);
   //set_mangled_mode();  
 
- #asm
-    ei
- #endasm
+#asm
+  ei
+#endasm
 
   // ------------------------------------------------------------
   // スプライト定義
@@ -180,7 +201,7 @@ int main(){
     0b01000010,
     0b11111111}; 
   
-  unsigned char  pat1[8] = {
+  unsigned char  shot_pat[8] = {
     0b00000000,
     0b00000000,
     0b01111100,
@@ -190,16 +211,27 @@ int main(){
     0b00000000,
     0b00000000}; 
 
+  unsigned char  spaceship_pat[8] = {
+    0b00000000,
+    0b00011000,
+    0b00111100,
+    0b01111110,
+    0b11111111,
+    0b11111111,
+    0b01100110,
+    0b01100110}; 
+
   preset_sprite_patgen_addr(0x0000);
   create_sprite8x8(0, pat0);
-  create_sprite8x8(1, pat1);
+  create_sprite8x8(1, shot_pat);
+  create_sprite8x8(2, spaceship_pat);
 
   unsigned char color[16] ={
-    0x02, 0x03,
-    0x04, 0x05,
-    0x06, 0x07,
-    0x08, 0x09,
-    0x0A, 0x0B,
+    0x02, 0x03, // 0
+    0x04, 0x05, // 1
+    0x06, 0x07, // 2
+    0x08, 0x09, // 3
+    0x0A, 0x0B, // 4
     0x0C, 0x0D,
     0x02, 0x08,
     0x02, 0x09
@@ -221,43 +253,77 @@ int main(){
   set_char('A', water1, NULL, 0x32, place_all);
   set_char('B', black1, NULL, 0x54, place_all);
 
+  struct Shot {
+    int x;
+    int y;
+    int show;
+  };
   
   // ------------------------------------------------------------
   // ------------------------------------------------------------
   int px=160, py=160;
+  int px_bk=px, py_bk=py;
+
   int x=0,y=0;
-  int d;
+  int d,t;
   int ct=0;
-  while (!get_trigger(0)) {
-    if( (ct++ % 50) == 0 ){ 
-      vwrite(map, 0x1800, (MAP_WIDTH * MAP_HEIGHT));    
-      //vwrite(map, 0, (MAP_WIDTH * MAP_HEIGHT));
-    }
-    
+
+  struct Shot shot ={20, 20, 0};
+
+  
+  while (1) {
+
+    // キー操作
     d = get_stick(0);
     switch (d) {
-    case 0: x = 0;  y = 0;   break;
+    case 0: x = 0;  y = 0;  break;
     case 1: x = 0;  y = -1; break;
     case 2: x = 1;  y = -1; break;
-    case 3: x = 1;  y = 0;   break;
+    case 3: x = 1;  y = 0;  break;
     case 4: x = 1;  y = 1;  break;
     case 5: x = 0;  y = 1;  break;
     case 6: x = -1; y = 1;  break;
-    case 7: x = -1; y = 0;   break;
+    case 7: x = -1; y = 0;  break;
     case 8: x = -1; y = -1; break;
-    default : x=0; y=0;       break;
+    default : x=0; y=0;     break;
     }
 
-    px += x;
+    t = get_keyboard(5);
+    if( (~t) & 0x80 ){ // Space key
+      shot.x = px;
+      shot.y = py;
+      shot.show = 1;
+    }
+
+    // 背景を描画
+    if( (ct++ % 20) == 0 ){ 
+      vwrite(map, 0x1800, (MAP_WIDTH * MAP_HEIGHT));    
+      //vwrite(map, 0, (MAP_WIDTH * MAP_HEIGHT));
+    }
+
+
+    // スプライト描画
+    px_bk = px;    
+    py_bk = py;
+    px += x;    
     py += y;
-    draw_sprite(1, 1, px, py );
+    if( (px < 0) || (px > 256-8) )  px = px_bk;
+    if( (py < 0) || (py > 192-8) )  py = py_bk;
+
+    draw_sprite(1, 2,  px,  py );
     draw_sprite(0, 0, 160, 160 );
     x=0; y=0;
-    
-  }
+      
+    if( shot.show ){
+      shot.y -= 2;;
+      if( shot.y < 8 ) {
+        shot.show = 0;
+        shot.y = 0;
+      }else{
+        draw_sprite(2, 1, shot.x, shot.y );
+      }
+    }
 
-    //  set_vdp_reg(10,0xFF);
+  } //   while (1) {
 
-  //printf("¥n");
-  //printf("Hello   !!!!!");
 }
