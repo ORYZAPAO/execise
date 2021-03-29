@@ -152,12 +152,12 @@ void preset_sprite_color(unsigned char id, unsigned char *table){
 //
 // spr 0 - 31
 // id  0 - 255
-void draw_sprite(unsigned char spr,  unsigned char id, unsigned char x, unsigned char y){
+void draw_sprite(unsigned char spr,  unsigned char id, unsigned char x, unsigned char y, unsigned char color){
   preset_vram_addr(SPRITE_ATTR_VADDR + 4*spr);
   outp(p0, y);  
   outp(p0, x);    
   outp(p0, id);    
-  outp(p0, 0x08);    
+  outp(p0, color);    
 }
 
 
@@ -227,7 +227,7 @@ int main(){
   create_sprite8x8(2, spaceship_pat);
 
   unsigned char color[16] ={
-    0x02, 0x03, // 0
+    0x01, 0x03, // 0
     0x04, 0x05, // 1
     0x06, 0x07, // 2
     0x08, 0x09, // 3
@@ -237,6 +237,8 @@ int main(){
     0x02, 0x09
   };
   preset_sprite_color(0, color);  
+  preset_sprite_color(1, color);  
+  preset_sprite_color(2, color);  
 
   preset_sprite_attr_addr(0x1B00);
 
@@ -297,30 +299,34 @@ int main(){
 
     // 背景を描画
     if( (ct++ % 20) == 0 ){ 
-      vwrite(map, 0x1800, (MAP_WIDTH * MAP_HEIGHT));    
+      //vwrite(map, 0x1800, (MAP_WIDTH * MAP_HEIGHT));    
       //vwrite(map, 0, (MAP_WIDTH * MAP_HEIGHT));
     }
 
 
-    // スプライト描画
-    px_bk = px;    
-    py_bk = py;
-    px += x;    
-    py += y;
-    if( (px < 0) || (px > 256-8) )  px = px_bk;
-    if( (py < 0) || (py > 192-8) )  py = py_bk;
-
-    draw_sprite(1, 2,  px,  py );
-    draw_sprite(0, 0, 160, 160 );
-    x=0; y=0;
+    if( (ct % 3) == 0 ){
+      // スプライト描画
+      px_bk = px;    
+      py_bk = py;
+      px += x;    
+      py += y;
+      if( (px < 0) || (px > 256-8) )  px = px_bk;
+      if( (py < 0) || (py > 192-8) )  py = py_bk;
       
-    if( shot.show ){
-      shot.y -= 2;;
-      if( shot.y < 8 ) {
-        shot.show = 0;
-        shot.y = 0;
-      }else{
-        draw_sprite(2, 1, shot.x, shot.y );
+      draw_sprite(1, 2,  px,  py, 0x1 );
+      draw_sprite(0, 0, 160, 160, 0x9 );
+      //draw_sprite(2, 2, 200, 160, 0x8 );
+
+      x=0; y=0;
+      
+      if( shot.show ){
+        shot.y -= 4;;
+        if( shot.y < 8 ) {
+          shot.show = 0;
+          shot.y = 0;
+        }else{
+          draw_sprite(2, 1, shot.x, shot.y, 0x08 );
+        }
       }
     }
 
