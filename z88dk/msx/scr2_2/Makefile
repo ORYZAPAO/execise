@@ -21,6 +21,7 @@ disk : mymsx1.c
 
 dos : mymsx1.c
 	zcc +msx -vn -llib3d  -lm -lndos -lmsxbios -create-app -DAMALLOC -subtype=msxdos mymsx1.c -o sc2.com
+	ctags -Re
 
 clean :
 	rm sc2.*
