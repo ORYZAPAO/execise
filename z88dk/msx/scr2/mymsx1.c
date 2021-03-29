@@ -299,7 +299,7 @@ int main(){
 
     // 背景を描画
     if( (ct++ % 20) == 0 ){ 
-      //vwrite(map, 0x1800, (MAP_WIDTH * MAP_HEIGHT));    
+      vwrite(map, 0x1800, (MAP_WIDTH * MAP_HEIGHT));    
       //vwrite(map, 0, (MAP_WIDTH * MAP_HEIGHT));
     }
 
