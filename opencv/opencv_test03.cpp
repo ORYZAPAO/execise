@@ -1,4 +1,5 @@
 #include <opencv2/core/utility.hpp>
+//#include <opencv2/imgproc.hpp>
 #include <opencv2/tracking.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
@@ -23,7 +24,8 @@ int main( int argc, char** argv ){
   **/
   
   // declares all required variables
-  Rect2d roi;
+  //Rect2d roi;
+  Rect roi;
   Mat frame;
 
   // create a tracker object
