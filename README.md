@@ -1,3 +1,1 @@
-# oryzalib
-
-Execise c++11 
+# C++ excise
