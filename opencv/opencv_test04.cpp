@@ -1,13 +1,13 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/tracking.hpp>
+//#include <opencv2/tracking/tracking_legacy.hpp>
 #include <opencv2/core/ocl.hpp>
- 
+
 using namespace cv;
 using namespace std;
  
 // Convert to string
-#define SSTR( x ) static_cast< std::ostringstream & >( \
-( std::ostringstream() << std::dec << x ) ).str()
+#define SSTR(x) (static_cast<std::ostringstream &>(std::ostringstream() << std::dec << x)).str()
  
 int main(int argc, char **argv)
 {
@@ -19,24 +19,25 @@ int main(int argc, char **argv)
     // Create a tracker
     string trackerType = trackerTypes[2];
  
-    Ptr<Tracker> tracker;
+    cv::Ptr<cv::Tracker> tracker;
  
     #if (CV_MINOR_VERSION < 3)
     {
-        tracker = Tracker::create(trackerType);
+      tracker = cv::Tracker::create(trackerType);
     }
     #else
     {
         if (trackerType == "BOOSTING")
-            tracker = TrackerBoosting::create();
+          //tracker = cv::TrackerBoosting::create();
+          //tracker = TrackerBoosting::create();
         if (trackerType == "MIL")
             tracker = TrackerMIL::create();
         if (trackerType == "KCF")
-            tracker = TrackerKCF::create();
+          tracker = TrackerKCF::create();
         if (trackerType == "TLD")
-            tracker = TrackerTLD::create();
+          //tracker = TrackerTLD::create();
         if (trackerType == "MEDIANFLOW")
-            tracker = TrackerMedianFlow::create();
+          //tracker = TrackerMedianFlow::create();
         if (trackerType == "GOTURN")
             tracker = TrackerGOTURN::create();
     }
@@ -58,7 +59,8 @@ int main(int argc, char **argv)
     bool ok = video.read(frame);
      
     // Define initial boundibg box
-    Rect2d bbox(287, 23, 86, 320);
+    //Rect2d bbox(287, 23, 86, 320);
+    Rect bbox(287, 23, 86, 320);
      
     // Uncomment the line below to select a different bounding box
     bbox = selectROI(frame, false);
