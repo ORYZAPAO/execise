@@ -1,5 +1,5 @@
 /*
- * ヒープ領域上のコードを実行する
+ * ヒープ領域上のコードを実行する(C++にしたらうまく動かない)
  */
 
 #include<iostream>
@@ -28,7 +28,7 @@ void alloc_execution(void *pi_pt){
   std::cout << "       Size : " << pagesize << std::endl;
   
   // mprotect() で、ヒープ領域にRead,Write,Execute属性を指定
-  if( mprotect(p, pagesize*10L, PROT_READ | PROT_WRITE | PROT_EXEC) != 0 ){
+  if( mprotect(p, pagesize*2L, PROT_READ | PROT_WRITE | PROT_EXEC) != 0 ){
     std::cout << "  mprotect() Failed" << std::endl;
   }
 }
