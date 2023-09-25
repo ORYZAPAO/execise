@@ -40,9 +40,11 @@ int main(){
   // ヒープ領域を確保して、コード(pi()) をヒープへコピー
   char  *pi_pt = new char[fsize];
   memcpy(pi_pt, reinterpret_cast<const void*>(pi), fsize);
-  std::cout << boost::format("  pi()    Address : %x") % reinterpret_cast<const void*>(pi) << std::endl;
-  std::cout << boost::format("  pi_pt() Address : %x") % reinterpret_cast<const void*>(pi_pt) << std::endl;
-
+  //std::cout << boost::format("  pi()    Address : %x") % reinterpret_cast<const void*>(pi) << std::endl;
+  //std::cout << boost::format("  pi_pt() Address : %x") % reinterpret_cast<const void*>(pi_pt) << std::endl;
+  printf("  pi()    Address: %p\n", pi);  // *** boost::format() を使うと、なぜかなぜかpi_pt()の呼び出しに失敗する。****
+  printf("  pi_pt() Address: %p\n", pi_pt);
+  
   // ヒープ領域に実行権を与える
   alloc_execution(reinterpret_cast<void *>(pi_pt));
 
